@@ -58,7 +58,7 @@ export default function RegisterNewUser() {
       <input
         type="text"
         placeholder="Player Tag"
-        maxLength={4}
+        maxLength={50}
         value={player_tag}
         onChange={(e) => setPlayerTag(e.target.value)}
       />

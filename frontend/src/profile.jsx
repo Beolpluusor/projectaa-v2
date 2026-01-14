@@ -1,4 +1,5 @@
 import NavigationBar from "./navigationbar";
+import PubgStats from "./pubgstats";
 
 export default function ProfilePage() {
     const user_id = localStorage.getItem("user_id");
@@ -10,6 +11,7 @@ export default function ProfilePage() {
             <NavigationBar />
             <p>Your User ID: {user_id}</p>
             <p>Your Username: {username}</p>
+            <PubgStats />
             
         </div>
     );

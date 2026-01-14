@@ -25,20 +25,15 @@ app.post("/login", (req, res) => {
       if (err) return res.status(500).json(err);
 
       if (results.length > 0) {
-        return res.json({ 
-          status: "ok", 
+        return res.json({
+          status: "ok",
           message: "login_success",
           // return user id and username to use in frontend as localstorage
           user: results[0].id,
           username: results[0].username,
           player_tag: results[0].player_tag
-          
+        });
       }
-
-      // Käyttäjää ei löytynyt
-      return res.json({ 
-        status: "error", 
-        message: "invalid_credentials" });
     }
   );
 });

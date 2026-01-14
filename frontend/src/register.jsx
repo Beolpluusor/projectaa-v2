@@ -24,6 +24,10 @@ export default function RegisterNewUser() {
         alert("User already exists");
         navigate("/register");
       }
+      if (response.data.message === "missing_fields") {
+        alert("fill all the fields, no empty fields allowed");
+        navigate("/register");
+      }
       
     } catch (err) {
       console.error(err);

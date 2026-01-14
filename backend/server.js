@@ -53,8 +53,17 @@ app.post("/login", (req, res) => {
 app.post("/register", async (req, res) => {
   const { username, password, player_tag } = req.body;
 
+  // Tarkista, että kaikki kentät on täytetty
+  if (!username || !password || !player_tag) {
+    return res.json({
+      status: "error in fields",
+      message: "missing_fields"
+    });
+  }
+  
   // Hashataan salasana
   const hashedPassword = await bcrypt.hash(password, 10);
+
 
   // Tarkista onko käyttäjä jo olemassa
   db.query(

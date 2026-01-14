@@ -56,7 +56,7 @@ app.post("/register", async (req, res) => {
   // Tarkista, että kaikki kentät on täytetty
   if (!username || !password || !player_tag) {
     return res.json({
-      status: "error in fields",
+      status: "error",
       message: "missing_fields"
     });
   }

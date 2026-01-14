@@ -1,6 +1,7 @@
 import express from "express";
 import mysql from "mysql2";
 import cors from "cors";
+import bcrypt from "bcrypt";
 
 const app = express();
 app.use(cors());
@@ -19,28 +20,41 @@ app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   db.query(
-    "SELECT * FROM users WHERE username = ? AND password = ?",
-    [username, password],
-    (err, results) => {
+    "SELECT * FROM users WHERE username = ?",
+    [username],
+    async (err, results) => {
       if (err) return res.status(500).json(err);
 
-      if (results.length > 0) {
-        return res.json({
-          status: "ok",
-          message: "login_success",
-          // return user id and username to use in frontend as localstorage
-          user: results[0].id,
-          username: results[0].username,
-          player_tag: results[0].player_tag
-        });
+      if (results.length === 0) {
+        return res.json({ status: "error", message: "invalid_credentials" });
       }
+
+      const user = results[0];
+
+      // Verrataan salasanaa hashattuun salasanaan
+      const isPasswordValid = await bcrypt.compare(password, user.PASSWORD);
+
+      if (!isPasswordValid) {
+        return res.json({ status: "error", message: "invalid_credentials" });
+      }
+
+      return res.json({
+        status: "ok",
+        message: "login_success",
+        user: user.id,
+        username: user.username,
+        player_tag: user.PLAYER_TAG
+      });
     }
   );
 });
 
 // REGISTER — luo uuden käyttäjän
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { username, password, player_tag } = req.body;
+
+  // Hashataan salasana
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   // Tarkista onko käyttäjä jo olemassa
   db.query(
@@ -50,21 +64,17 @@ app.post("/register", (req, res) => {
       if (err) return res.status(500).json(err);
 
       if (results.length > 0) {
-        return res.json({ 
-          status: "error", 
-          message: "user_exists" });
+        return res.json({ status: "error", message: "user_exists" });
       }
 
-      // Luo uusi käyttäjä
+      // Luo uusi käyttäjä hashatulla salasanalla
       db.query(
-        "INSERT INTO users (username, password, player_tag) VALUES (?, ?, ?)",
-        [username, password, player_tag],
-        (err2, result2) => {
+        "INSERT INTO users (username, PASSWORD, PLAYER_TAG) VALUES (?, ?, ?)",
+        [username, hashedPassword, player_tag],
+        (err2) => {
           if (err2) return res.status(500).json(err2);
 
-          return res.json({ 
-            status: "ok", 
-            message: "user_created" });
+          return res.json({ status: "ok", message: "user_created" });
         }
       );
     }

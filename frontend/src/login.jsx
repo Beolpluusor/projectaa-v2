@@ -6,7 +6,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  
   const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:5000/login", {
@@ -18,6 +18,7 @@ export default function Login() {
         // setting user_id localStorage, this denies the need to login again when refreshing the page
         localStorage.setItem("user_id", response.data.user); // id
         localStorage.setItem("username", response.data.username); // username
+        localStorage.setItem("player_tag", response.data.player_tag); // player tag
         alert("Login successful");
         navigate("/home");
         

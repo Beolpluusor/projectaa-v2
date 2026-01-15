@@ -3,33 +3,62 @@ import NavigationBar from "./navigationbar";
 
 export default function Home() {
   const navigate = useNavigate();
+  const Header = () => <header><h1>this is where the fun begins</h1></header>;
+  const Footer = () => <footer><p>© 2024 Project AA by Arttu Sonne</p></footer>;
+  const Information = () => (
+    <div>
+      PUBG - player stats not working because of invalid API key<br />
+      Login system - works fine<br />
+      Database connection - works fine<br />
+      Frontend and Backend connection - works fine<br />
+      More features coming soon!
+    </div>
+  );
 
   const handleLogout = () => {
     // Jos myöhemmin tallennat käyttäjän localStorageen, tyhjennä se tässä
     localStorage.removeItem("user");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("username");
+    localStorage.removeItem("player_tag");
 
     navigate("/"); // vie takaisin login-sivulle
   };
 
-  const userPrinter = () => {
+  const UserPrinter = () => {
     // Jos käyttäjätiedot tallennetaan localStorageen, voit hakea ja näyttää ne tässä
     const user_id = localStorage.getItem("user_id");
     const username = localStorage.getItem("username");    
+    const player_tag = localStorage.getItem("player_tag");
     
     return (
-      <div>
+      <div className="user-info">
         Welcome, you are player number: {user_id}
         <br />
-        your user name is {username}!
+        your user name is: {username}!
+        <br />
+        your player tag is: {player_tag}!
+      </div>
+    )
+
+
+    return (
+      <div>
+        <userPrinter />
         </div>
     );  
   }
 
+  // Pääkomponentin renderöinti
   return (
     <div>
       <h1>welcome to project AA</h1>
       <NavigationBar />
-      {userPrinter()}
+      <Header />
+      <UserPrinter />
+      <br />
+      <Information />
+      <Footer />
 
       <button onClick={handleLogout}>
         Logout

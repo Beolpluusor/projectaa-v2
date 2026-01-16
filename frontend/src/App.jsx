@@ -5,6 +5,7 @@ import RegisterNewUser from "./register";
 import ProfilePage from "./profile";
 import PubgStats from "./pubgstats";
 import PlayerListIn from "./playerlistin";
+import "./assets/styles/App.css";
 
 export default function App() {
   return (

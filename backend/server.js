@@ -98,14 +98,25 @@ app.get("/pubg/season/:name", async (req, res) => {
 
 
 // =========================
-// DATABASE CONNECTION
+// DATABASE CONNECTION to project - aa
 // =========================
-const db = mysql.createConnection({
+const db_projectaa = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "projectaa",
 });
+
+// =========================
+// DATABASE CONNECTION to project - aa
+// =========================
+const db_opiskelijat = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "opiskelijoidenharrastukset",
+});
+
 
 // =========================
 // LOGIN
@@ -115,7 +126,7 @@ app.post("/login", (req, res) => {
   
   const { username, password } = req.body;
 
-  db.query(
+  db_projectaa.query(
     "SELECT * FROM users WHERE username = ?",
     [username],
     async (err, results) => {
@@ -159,7 +170,7 @@ app.post("/register", async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  db.query(
+  db_projectaa.query(
     "SELECT * FROM users WHERE username = ?",
     [username],
     (err, results) => {
@@ -169,7 +180,7 @@ app.post("/register", async (req, res) => {
         return res.json({ status: "error", message: "user_exists" });
       }
 
-      db.query(
+      db_projectaa.query(
         "INSERT INTO users (username, PASSWORD, PLAYER_TAG) VALUES (?, ?, ?)",
         [username, hashedPassword, player_tag],
         (err2) => {
@@ -189,7 +200,7 @@ app.post("/update_player_tag", (req, res) => {
   
   const { user_id, new_player_tag } = req.body;
 
-  db.query(
+  db_projectaa.query(
     "UPDATE users SET PLAYER_TAG = ? WHERE id = ?",
     [new_player_tag, user_id],
     (err, result) => {
@@ -206,7 +217,7 @@ app.post("/update_player_tag", (req, res) => {
 // LIST ALL PLAYERS
 // =========================
 app.get("/players", (req, res) => {
-  db.query("SELECT id, username, PLAYER_TAG FROM users", (err, results) => {
+  db_projectaa.query("SELECT id, username, PLAYER_TAG FROM users", (err, results) => {
     if (err) {
       console.error("DB error:", err);
       return res.status(500).json({ status: "error" });
@@ -223,7 +234,7 @@ app.get("/players", (req, res) => {
 // LIST ALL GAMES
 // =========================
 app.get("/games", (req, res) => {
-  db.query("SELECT * FROM gamtitle", (err, results) => {
+  db_projectaa.query("SELECT * FROM gamtitle", (err, results) => {
     if (err) {
       console.error("DB error:", err);
       return res.status(500).json({ status: "error" });
@@ -236,6 +247,21 @@ app.get("/games", (req, res) => {
   });
 });
 
+// opikselijoidenharrastukset database routes and calls/responses
+// db_opiskelijat connection used here
+app.get("/student_infos", (req, res) => {
+  db_opiskelijat.query("SELECT * FROM opiskelija", (err, results) => {
+    if (err) {
+      console.error("DB error:", err);
+      return res.status(500).json({ status: "error" });
+    }
+    
+    return res.json({
+      status: "ok",
+      Infos: results
+    });
+  });
+});
 
 // =========================
 // START SERVER

@@ -4,7 +4,7 @@ import NavigationBar from "./navigationbar";
 export default function Home() {
   const navigate = useNavigate();
   const Header = () => <header><h1>this is where the fun begins</h1></header>;
-  const Footer = () => <footer><p>© 2024 Project AA by Arttu Sonne</p></footer>;
+  const Footer = () => <footer><p>© 2026 Project AA by Arttu Sonne</p></footer>;
   const Information = () => (
     <div>
       PUBG - player stats not working because of invalid API key<br />

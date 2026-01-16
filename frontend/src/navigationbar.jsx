@@ -18,8 +18,8 @@ export default function NavigationBar() {
         }}>
             <button onClick={() => navigate('/home')}>Home</button>
             <button onClick={() => navigate('/profile')}>Profile</button>
+            <button onClick={() => navigate('/playerlistin')}>DataBase information</button>
             <button onClick={handleLogout}>Logout</button>
-            <button onClick={() => navigate('/playerlistin')}>Player List In</button>
         </nav>
     );
 }

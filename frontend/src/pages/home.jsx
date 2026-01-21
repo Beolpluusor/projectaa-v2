@@ -10,6 +10,7 @@ export default function Home() {
       Login system - works fine<br />
       Database connection - works fine<br />
       Frontend and Backend connection - works fine<br />
+      first game added "reaction game" , feel free to test your skills!<br />
       More features coming soon!
     </div>
   );

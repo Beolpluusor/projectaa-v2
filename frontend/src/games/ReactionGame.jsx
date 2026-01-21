@@ -31,7 +31,7 @@ export default function ReaktioPeli() {
     };
 
     const handleClick = async () => {
-        console.log("playerTag:", playerTag);
+        
         if (status !== "click") return;
 
         const end = Date.now();

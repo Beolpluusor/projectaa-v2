@@ -7,7 +7,6 @@ export default function Home() {
   const Footer = () => <footer><p>© 2026 Project AA by Arttu Sonne</p></footer>;
   const Information = () => (
     <div>
-      PUBG - player stats not working because of invalid API key<br />
       Login system - works fine<br />
       Database connection - works fine<br />
       Frontend and Backend connection - works fine<br />

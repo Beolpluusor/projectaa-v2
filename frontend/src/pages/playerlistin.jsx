@@ -38,23 +38,6 @@ export default function UsersList() {
     loadGames();
   }, []);
 
-  // opiskelijoidenharrastukset database fetch and display
-
-  // all student informations
-  const [studentInfos, setStudentInfos] = useState([]);
-  useEffect(() => {
-    const loadStudentInfos = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/student_infos");
-        if (response.data.status === "ok") {
-          setStudentInfos(response.data.Infos);
-        }
-      } catch (err) {
-        console.error("Error loading student infos:", err);
-      }
-    };
-    loadStudentInfos();
-  }, []);
   
   // ========================
   // rendering all users and their player tags in to page
@@ -86,29 +69,6 @@ export default function UsersList() {
                 </li>
             ))}
         </ul>
-      </div>
-      <div>
-        <h2>Opiskelijoiden Harrastukset - tietokanta</h2>
-        <p>tässä on harrastukset tietokannasta kaikki opiskelijat</p>
-        {studentInfos.length === 0 && <p>No student infos found</p>}
-        <div className="student-grid">
-            {studentInfos.map((info) => (
-                <div className="student-card" key={info.id}>
-                  <br />
-                    Opiskelija id: {info.OPISKELIJANUMERO}<br />
-                    Etunimi: {info.ETUNIMI} <br />
-                    Sukunimi: {info.SUKUNIMI}<br />
-                    Katuosoite: {info.KATUOSOITE}<br />
-                    Postinumero: {info.POSTINUMERO}<br />
-                    Postitoimipaikka: {info.POSTITOIMIPAIKKA}<br />
-                    Puhelin: {info.PUHELIN}<br />
-                    Email: {info.EMAIL}<br />
-                    Syntymäaika: {info.SYNTYMÄAIKA}<br />
-                    Palkka: {info.PALKKA}<br />
-                  <br />
-                </div>
-            ))}
-        </div>
       </div>
     </div>
   );

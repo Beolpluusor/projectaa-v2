@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./login";
-import Home from "./home";
-import RegisterNewUser from "./register";
-import ProfilePage from "./profile";
-import PubgStats from "./pubgstats";
-import PlayerListIn from "./playerlistin";
+import Login from "./pages/login";
+import Home from "./pages/home";
+import RegisterNewUser from "./pages/register";
+import ProfilePage from "./pages/profile";
+import PlayerListIn from "./pages/playerlistin";
+import ReactionGame from "./games/ReactionGame";
+
 import "./assets/styles/App.css";
 
 export default function App() {
@@ -15,8 +16,9 @@ export default function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<RegisterNewUser />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/pubgstats" element={<PubgStats />} />
         <Route path="/playerlistin" element={<PlayerListIn />} />
+        <Route path="/reactiongame" element={<ReactionGame />} />
+        
       </Routes>
     </BrowserRouter>
   );

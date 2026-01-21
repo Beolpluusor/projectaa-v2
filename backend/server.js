@@ -2,99 +2,11 @@ import express from "express";
 import mysql from "mysql2";
 import cors from "cors";
 import bcrypt from "bcrypt";
-import { Client } from "pubg.js";
+
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// =========================
-// PUBG PLAYER STATS ROUTE
-// =========================
-// PUBG API avain
-const pubgApiKey =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiY2ViZWE3MC1kNDEzLTAxM2UtNDIzMC01YTE3YTU3M2I3NjkiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNzY4NDYyOTc5LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InByb2plY3RhYSJ9.0VxIH0RanJ91ggS0zCpoPFlmkpoK58BLfat_Baf7tCM";
-
-const pubgClient = new Client({
-  apiKey: pubgApiKey,
-  shard: "steam"
-});
-
-
-// Vaihda "steam" → "kakao" jos pelaaja on konsolissa tai muulla alustalla
-console.log("pubgClient:", pubgClient);
-console.log("players:", pubgClient.players);
-console.log("matches:", pubgClient.matches);
-
-app.get("/pubg/player/:name", async (req, res) => {
-  try {
-    const playerName = req.params.name;
-    console.log("Fetching PUBG stats for:", playerName);
-
-    // Hae pelaaja
-    const player = await pubgClient.getPlayer({ name: playerName });
-    console.log("Player OK:", player);
-
-    // Hae viimeisin match
-    const matchId = player.matches[0].id;
-    console.log("Match ID:", matchId);
-
-    const match = await pubgClient.getMatch(matchId);
-    console.log("Match OK");
-
-    res.json({
-      player,
-      lastMatch: match,
-    });
-
-  } catch (err) {
-    console.error("PUBG API error:", err);
-    res.status(500).json({ error: "PUBG API error" });
-  }
-});
-
-// =========================
-// PUBG SEASON STATS ROUTE
-// =========================
-app.get("/pubg/season/:name", async (req, res) => {
-  try {
-    const playerName = req.params.name;
-    console.log("Fetching season stats for:", playerName);
-
-    // 1. Hae pelaaja
-    const player = await pubgClient.getPlayer({ name: playerName });
-    console.log("Player OK");
-
-    // 2. Hae aktiivinen kausi
-    const seasons = await pubgClient.getSeasons();
-    const currentSeason = seasons.find(season => season.isCurrentSeason);
-
-    if (!currentSeason) {
-      return res.json({ error: "No active season found" });
-    }
-
-    console.log("Current season:", currentSeason.id);
-
-    // 3. Hae kauden statit
-    const seasonStats = await pubgClient.getSeasonStats(player.id, currentSeason.id);
-    console.log("Season stats OK");
-
-    // 4. Palauta vain hyödylliset tiedot
-    res.json({
-      player: player.attributes.name,
-      season: currentSeason.id,
-      stats: {
-        solo: seasonStats.gameModeStats.solo,
-        duo: seasonStats.gameModeStats.duo,
-        squad: seasonStats.gameModeStats.squad
-      }
-    });
-
-  } catch (err) {
-    console.error("PUBG API error:", err);
-    res.status(500).json({ error: "PUBG API error" });
-  }
-});
 
 
 // =========================
@@ -105,16 +17,6 @@ const db_projectaa = mysql.createConnection({
   user: "root",
   password: "",
   database: "projectaa",
-});
-
-// =========================
-// DATABASE CONNECTION to project - aa
-// =========================
-const db_opiskelijat = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "opiskelijoidenharrastukset",
 });
 
 
@@ -247,20 +149,25 @@ app.get("/games", (req, res) => {
   });
 });
 
-// opikselijoidenharrastukset database routes and calls/responses
-// db_opiskelijat connection used here
-app.get("/student_infos", (req, res) => {
-  db_opiskelijat.query("SELECT * FROM opiskelija", (err, results) => {
-    if (err) {
-      console.error("DB error:", err);
-      return res.status(500).json({ status: "error" });
+// =========================
+// gamescore save
+// =========================
+app.post("/save_reaction_score", (req, res) => {
+  const { PLAYER_TAG, GAMEID, PLAYERSCORE, GAMETIME } = req.body;
+  
+
+  db_projectaa.query(
+    "INSERT INTO game (PLAYERNAME, PLAYERSCORE, GAMETIME, GAMEID) VALUES (?, ?, ?, ?)",
+    [PLAYER_TAG, PLAYERSCORE, GAMETIME, GAMEID],
+    (err) => {
+      if (err) {
+        console.error("Insert score error:", err);
+        return res.status(500).json({ status: "insert_score_error" });
+      }
+
+      return res.json({ status: "ok" });
     }
-    
-    return res.json({
-      status: "ok",
-      Infos: results
-    });
-  });
+  );
 });
 
 // =========================

@@ -19,7 +19,9 @@ export default function NavigationBar() {
             <button onClick={() => navigate('/home')}>Home</button>
             <button onClick={() => navigate('/profile')}>Profile</button>
             <button onClick={() => navigate('/playerlistin')}>DataBase information</button>
+            <button onClick={() => navigate('/reactiongame')}>Reaction Game</button>
             <button onClick={handleLogout}>Logout</button>
+            
         </nav>
     );
 }

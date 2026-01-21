@@ -1,5 +1,4 @@
 import NavigationBar from "./navigationbar";
-import PubgStats from "./pubgstats";
 import { useState } from "react";
 import axios from "axios";
 
@@ -48,7 +47,7 @@ const changePlayerTag = async () => {
                 <div className="card">Player Tag: {savedTag}</div>
                 <button onClick={changePlayerTag}>Change Player Tag</button>
             </div>
-            
+
         </div>
     );
 }

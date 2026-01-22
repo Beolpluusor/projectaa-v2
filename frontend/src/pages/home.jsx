@@ -40,13 +40,6 @@ export default function Home() {
         your player tag is: {player_tag}!
       </div>
     )
-
-
-    return (
-      <div>
-        <userPrinter />
-        </div>
-    );  
   }
 
   // Pääkomponentin renderöinti

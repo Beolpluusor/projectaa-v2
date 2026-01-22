@@ -3,11 +3,9 @@ import mysql from "mysql2";
 import cors from "cors";
 import bcrypt from "bcrypt";
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
-
 
 // =========================
 // DATABASE CONNECTION to project - aa
@@ -18,7 +16,6 @@ const db_projectaa = mysql.createConnection({
   password: "",
   database: "projectaa",
 });
-
 
 // =========================
 // LOGIN

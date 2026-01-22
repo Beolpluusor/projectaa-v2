@@ -36,6 +36,8 @@ export default function ReaktioPeli() {
 
         const end = Date.now();
         const time = end - startTime;
+        const scoreCalculator = time / 1000;
+        
         setReactionTime(time);
         setStatus("done");
 
@@ -45,8 +47,8 @@ export default function ReaktioPeli() {
             body: JSON.stringify({
                 PLAYER_TAG: playerTag,
                 GAMEID: 6,
-                PLAYERSCORE: time,
-                GAMETIME: time
+                PLAYERSCORE: scoreCalculator,
+                GAMETIME: time / 1000
             })
         });
     };

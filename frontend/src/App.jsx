@@ -6,7 +6,9 @@ import ProfilePage from "./pages/profile";
 import PlayerListIn from "./pages/playerlistin";
 import ReactionGame from "./games/ReactionGame";
 import Snake from "./games/Snake";
-
+import GamesPage from "./pages/gamesPage";
+import HallOfFame from "./pages/hallOfFame";
+import TestArea from "./pages/testarea"
 import "./assets/styles/App.css";
 
 export default function App() {
@@ -20,6 +22,9 @@ export default function App() {
         <Route path="/playerlistin" element={<PlayerListIn />} />
         <Route path="/reactiongame" element={<ReactionGame />} />
         <Route path="/snake" element={<Snake />} />
+        <Route path="/gamespage" element={<GamesPage />} />
+        <Route path="/halloffame" element={<HallOfFame />} />
+        <Route path="/testarea" element={<TestArea />} />
         
       </Routes>
     </BrowserRouter>

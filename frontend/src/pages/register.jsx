@@ -65,7 +65,7 @@ export default function RegisterNewUser() {
 
       <button onClick={handleRegister}>Register</button>
       <br />
-      <button onClick={() => navigate("/")}>Back to Login</button>
+      <button onClick={() => navigate("/")}>Back to mainpage</button>
     </div>
   );
 }

@@ -57,7 +57,8 @@ export default function Login() {
 
       <button onClick={handleLogin}>Login</button>
       <p>new user? then click the register button to get in the fun</p>
-      <button onClick={() => navigate("/register")}>Register</button>
+
+      <button onClick={() => navigate("/")}>Back to mainpage</button>
     </div>
   );
 }

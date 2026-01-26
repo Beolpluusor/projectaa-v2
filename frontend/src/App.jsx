@@ -9,15 +9,17 @@ import Snake from "./games/Snake";
 import GamesPage from "./pages/gamesPage";
 import HallOfFame from "./pages/hallOfFame";
 import TestArea from "./pages/testarea"
+import WelcomePage from "./pages/welcomePage";
 import "./assets/styles/App.css";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<RegisterNewUser />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/playerlistin" element={<PlayerListIn />} />
         <Route path="/reactiongame" element={<ReactionGame />} />
@@ -25,7 +27,6 @@ export default function App() {
         <Route path="/gamespage" element={<GamesPage />} />
         <Route path="/halloffame" element={<HallOfFame />} />
         <Route path="/testarea" element={<TestArea />} />
-        
       </Routes>
     </BrowserRouter>
   );

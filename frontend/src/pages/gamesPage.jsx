@@ -27,11 +27,10 @@ export default function GamesPage() {
     const GameBoxRender = function () {
         return gamesDisplay.map((game) => {
             return (
-                <div className="gamer-card">
-                    <h3>{game.GAMEID}</h3>
-                    <p>{game.GAMENAME}</p>
-                    <button onClick={() => navigate()}>Play</button>
-                    
+                    <div className="gamer-card">
+                        <h3>{game.GAMEID}</h3>
+                        <p>{game.GAMENAME}</p>
+                        <button onClick={() => navigate()}>Play</button>
                 </div>
             );
         })

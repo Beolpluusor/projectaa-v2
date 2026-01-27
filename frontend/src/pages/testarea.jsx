@@ -61,6 +61,34 @@ export default function TestArea() {
     }
 
 
+    // player tag change
+    const changePlayerTag = async () => {
+    const newTag = prompt("Enter your new Player Tag:", savedTag);
+
+    if (newTag && newTag !== savedTag) {
+        try {
+            const response = await axios.post("http://localhost:5000/update_player_tag", {
+                user_id,
+                new_player_tag: newTag
+            });
+
+            if (response.data.status === "ok") {
+                alert("Player Tag updated successfully");
+                savedTag = newTag;
+                window.location.reload();
+            }
+
+            if (response.data.status === "error") {
+                alert("Error updating Player Tag: " + response.data.message);
+            }
+
+        } catch (error) {
+            console.error("Error updating Player Tag:", error);
+            alert("Failed to update Player Tag");
+        }
+    }
+};
+
     return (
         <div>
             <h1>Test environment</h1>

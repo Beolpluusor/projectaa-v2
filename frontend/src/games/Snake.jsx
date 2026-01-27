@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import NavigationBar from "../pages/navigationbar";
+import { useNavigate } from "react-router-dom";
 
 export default function Matopeli() {
+    const navigate = useNavigate();
     const [playerTag, setPlayerTag] = useState("");
     const [snake, setSnake] = useState([[10, 10]]);
     const [food, setFood] = useState([15, 15]);
@@ -9,7 +11,7 @@ export default function Matopeli() {
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(false);
     const [startTime, setStartTime] = useState(null);
-
+    const userId = localStorage.getItem("user_id");
     const boardSize = 20;
     const intervalRef = useRef(null);
 
@@ -117,9 +119,10 @@ export default function Matopeli() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 PLAYER_TAG: playerTag,
-                GAMEID: 6,
+                GAMEID: 1,
                 PLAYERSCORE: scoreCalculator,
-                GAMETIME: timeSeconds
+                GAMETIME: timeSeconds,
+                user_id: userId
             })
         });
     };
@@ -181,6 +184,7 @@ export default function Matopeli() {
                     );
                 })}
             </div>
+            <button onClick={() => navigate("/gamespage")}>back to games</button>
         </div>
     );
 }

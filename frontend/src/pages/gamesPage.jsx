@@ -30,7 +30,7 @@ export default function GamesPage() {
                     <div className="gamer-card">
                         <h3>{game.GAMEID}</h3>
                         <p>{game.GAMENAME}</p>
-                        <button onClick={() => navigate()}>Play</button>
+                        <button onClick={() => navigate("")}>Play</button>
                 </div>
             );
         })
@@ -41,7 +41,15 @@ export default function GamesPage() {
         <div>
             <h1>Games</h1>
             <NavigationBar />
-            <GameBoxRender />
+            <div>
+                <h2>Reaction Game</h2>
+                <button onClick={() => navigate("/reactiongame")}>Play</button>
+            </div>
+
+            <div>
+                <h2>Snake</h2>
+                <button onClick={() => navigate("/snake")}>Play</button>
+            </div>
         </div>
     );
 }

@@ -128,6 +128,59 @@ app.get("/players", (req, res) => {
     });
   });
 });
+// =========================
+// PROFILE PAGE DATA
+// =========================
+// kun react kutsuu: GET http://localhost:3001/profile/5
+// saadaan takaisin:
+//  {
+//    "success": true,
+//    "userId": 5,
+//    "games": [
+//      {
+//        "user_id": 5,
+//        "username": "Arttu",
+//        "game_name": "WORDGAME",
+//        "total_score": 12000,
+//        "total_time": 540
+//      }
+//    ]
+//  }
+app.get("/profile/:userId", (req, res) => {
+  const userId = req.params.userId;
+
+  db_projectaa.query(
+    `
+    SELECT
+      u.id AS user_id,
+      u.username,
+      gt.GAMENAME as game_name,
+      SUM(g.PLAYERSCORE) AS total_score,
+      SUM(g.GAMETIME) AS total_time
+    FROM users u
+    LEFT JOIN scores s ON u.id = s.user_id
+    LEFT JOIN game g ON s.game_id = g.ID_GAME
+    LEFT JOIN gamtitle gt ON g.GAMEID = gt.GAMEID
+    WHERE u.id = ?
+    GROUP BY gt.GAMENAME, u.id, u.username
+    `,
+    [userId],
+    (err, rows) => {
+      
+      if (err) {
+        console.error("Profile query error:", err);
+        return res.status(500).json({ success: false, message: "Server error" });
+      }
+      console.log("PROFILE ROWS:", rows)
+      res.json({
+        success: true,
+        userId,
+        games: rows
+      });
+    }
+  );
+});
+
 
 // =========================
 // LIST ALL GAMES
@@ -150,19 +203,33 @@ app.get("/games", (req, res) => {
 // gamescore save
 // =========================
 app.post("/save_reaction_score", (req, res) => {
-  const { PLAYER_TAG, GAMEID, PLAYERSCORE, GAMETIME } = req.body;
-  
+  const { PLAYER_TAG, GAMEID, PLAYERSCORE, GAMETIME, user_id } = req.body;
 
+  // 1. Lisää peli game-tauluun
   db_projectaa.query(
     "INSERT INTO game (PLAYERNAME, PLAYERSCORE, GAMETIME, GAMEID) VALUES (?, ?, ?, ?)",
     [PLAYER_TAG, PLAYERSCORE, GAMETIME, GAMEID],
-    (err) => {
+    (err, result) => {
       if (err) {
         console.error("Insert score error:", err);
         return res.status(500).json({ status: "insert_score_error" });
       }
 
-      return res.json({ status: "ok" });
+      const newGameId = result.insertId; // <-- TÄRKEÄ!
+
+      // 2. Lisää scores-tauluun linkki käyttäjän ja pelin välille
+      db_projectaa.query(
+        "INSERT INTO scores (user_id, game_id) VALUES (?, ?)",
+        [user_id, newGameId],
+        (err2) => {
+          if (err2) {
+            console.error("Insert into scores error:", err2);
+            return res.status(500).json({ status: "insert_scores_error" });
+          }
+
+          return res.json({ status: "ok" });
+        }
+      );
     }
   );
 });

@@ -4,11 +4,12 @@ import NavigationBar from "../pages/navigationbar";
 
 
 export default function ReaktioPeli() {
-
+    const navigate = useNavigate();
     const [playerTag, setPlayerTag] = useState("");
     const [status, setStatus] = useState("idle");
     const [startTime, setStartTime] = useState(null);
     const [reactionTime, setReactionTime] = useState(null);
+    const userId = localStorage.getItem("user_id");
 
     // Haetaan player_tag localStoragesta kun komponentti käynnistyy
     useEffect(() => {
@@ -48,7 +49,8 @@ export default function ReaktioPeli() {
                 PLAYER_TAG: playerTag,
                 GAMEID: 6,
                 PLAYERSCORE: scoreCalculator,
-                GAMETIME: time / 1000
+                GAMETIME: time / 1000,
+                user_id: userId
             })
         });
     };
@@ -88,6 +90,7 @@ export default function ReaktioPeli() {
                 )}
                 
             </div>
+            <button onClick={() => navigate("/gamespage")}>back to games</button>
         </div>
     );
 }

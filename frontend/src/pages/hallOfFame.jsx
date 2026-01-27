@@ -36,7 +36,9 @@ export default function HallOfFame() {
           </div>
         );
     }
-
+    // sorting the list from lowest to top, that topscores are index 1. etc..
+    const sortedPlayers = [...players].sort((a, b) => b.total_score - a.total_score);
+    
     return (
         <div>
             <h1>Hall of Fame</h1>
@@ -56,7 +58,7 @@ export default function HallOfFame() {
                     </thead>
 
                     <tbody>
-                        {players.map((p, index) => (
+                        {sortedPlayers.map((p, index) => (
                             <tr key={index}>
                                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
                                     {index + 1}

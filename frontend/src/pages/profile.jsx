@@ -41,8 +41,8 @@ export default function ProfilePage() {
                         <div key={index} style={styles.card}>
                             <h3>{game.game_name}</h3>
 
-                            <p><strong>Kokonaispisteet:</strong> {game.total_score}</p>
-                            <p><strong>Kokonaisaika:</strong> {game.total_time} min</p>
+                            <p><strong>Alltime Scores:</strong> {Math.round(game.total_score)}</p>
+                            <p><strong>Total Time:</strong> {Math.round(game.total_time)} seconds</p>
                         </div>
                     ))}
                 </div>

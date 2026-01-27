@@ -67,7 +67,7 @@ export default function HallOfFame() {
                                     {p.PLAYERNAME}
                                 </td>
                                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                                    {p.total_score}
+                                    {Math.round(p.total_score)}
                                 </td>
                                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
                                     {p.games_played}

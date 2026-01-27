@@ -15,7 +15,12 @@ making documentation and uploading it here when its finished.
 
 been a very good project for me, now I know how to do a database, frontend, backend.
 
-// AI (copilot) generated documentation
+Tämä on juuri se hetki kun dokumentaatio nostaa koko projektin seuraavalle tasolle. Laadin sinulle täydellisen, ammattimaisen ja GitHub‑valmiin README.md‑dokumentaation, joka sopii suoraan reposi juureen.
+Rakensin dokumentaation suoraan projektisi rakenteen, koodin ja tietokannan perusteella. Se on selkeä, kattava ja antaa hyvän kuvan koko järjestelmästä.
+
+📘 README.md — Project AA (projectaa‑v2)
+Valmis kopioitavaksi GitHubiin.
+
 # 🎮 Project AA — Full‑Stack Game Platform  
 Moderni React + Node.js + MySQL ‑pohjainen pelialusta, jossa käyttäjät voivat rekisteröityä, pelata minipelejä, tarkastella profiilitilastojaan ja nousta Hall of Fame ‑listalle.
 
@@ -75,6 +80,8 @@ Sovellus on suunniteltu laajennettavaksi: uusia pelejä voi lisätä helposti.
 
 ## 🏗️ Arkkitehtuuri
 
+
+projectaa-v2/ │ ├── backend/ │   └── server.js        # Express backend + API │ ├── frontend/ │   ├── src/ │   │   ├── pages/       # Profiili, pelit, Hall of Fame │   │   ├── components/  # Navigaatio, UI │   │   ├── games/       # Pelikomponentit (esim. ReactionGame) │   │   └── App.js │   └── package.json │ └── README.md
 
 ---
 
@@ -82,45 +89,136 @@ Sovellus on suunniteltu laajennettavaksi: uusia pelejä voi lisätä helposti.
 
 ### 1. Kloonaa repo
 
-git clone https://githug.com/Beolpluusor/projectaa-v2
 
+git clone https://github.com/Beolpluusor/projectaa-v2
 
 ### 2. Asenna backend
+
+
 cd backend npm install node server.js
 
 Backend käynnistyy porttiin **5000**.
 
 ### 3. Asenna frontend
+
+
 cd frontend npm install npm start
 
 Frontend käynnistyy porttiin **3000**.
 
 ### 4. Luo MySQL‑tietokanta
-aja mukana tuleva SQL-dump (phpMAdmin -> import).
+Luo tietokanta nimeltä:
 
-GET /hall_of_fame
-palauttaa top 10 pelaajaa:
+
+projectaa
+
+Aja mukana tuleva SQL‑dump (phpMyAdmin → Import).
+
+---
+
+## 🗄️ Tietokantarakenne
+
+### **users**
+| id | username | PASSWORD | PLAYER_TAG |
+|----|----------|----------|------------|
+
+### **game**
+| ID_GAME | PLAYERNAME | PLAYERSCORE | GAMETIME | GAMEID |
+
+### **scores**
+| id | user_id | game_id |
+
+### **gamtitle**
+| GAMEID | GAMENAME |
+
+### Suhdekaavio
+- `users.id` → `scores.user_id`
+- `game.ID_GAME` → `scores.game_id`
+- `gamtitle.GAMEID` → `game.GAMEID`
+
+---
+
+## 🔌 Backend API
+
+### 🔐 POST `/login`
+Kirjaa käyttäjän sisään.
+
+### 🧾 POST `/register`
+Luo uuden käyttäjän.
+
+### 🏷️ POST `/update_player_tag`
+Päivittää käyttäjän PLAYER_TAG‑arvon.
+
+### 👤 GET `/profile/:userId`
+Palauttaa käyttäjän pelihistorian:
+
+```json
+{
+  "success": true,
+  "userId": 18,
+  "games": [
+    {
+      "game_name": "ReactionGame",
+      "total_score": 12.5,
+      "total_time": 5.2
+    }
+  ]
+}
+
+
+🏆 GET /hall_of_fame
+Palauttaa top 10 pelaajaa:
 [
   { "PLAYERNAME": "Beolpluusor", "total_score": 111.32, "games_played": 16 }
 ]
 
-POST /save_reaction_score
-tallentaa ReactionGame-pelituloksen
+
+🎮 POST /save_reaction_score
+Tallentaa ReactionGame‑pelituloksen.
 
-
-Frontend-rakenne
-
-tärkeimmät sivut
-. /login
-. /register
-. /profile:id
-. /gamespage
-. /halloffame
-. /reactiongame
-
+🎨 Frontend-rakenne
+Tärkeimmät sivut
+- /login
+- /register
+- /profile/:id
+- /gamespage
+- /halloffame
+- /reaktiopeli
+Navigaatio
 NavigationBar.jsx tarjoaa linkit sivujen välillä.
 
- Kehitysohjeet
+🎯 Pelit
+Reaction Game
+- Odottaa satunnaisen ajan
+- Pelaaja klikkaa mahdollisimman nopeasti
+- Tallentaa:
+- PLAYER_TAG
+- PLAYERSCORE (sekunteina)
+- GAMETIME
+- GAMEID = 6
+
+🏆 Hall of Fame
+Hall of Fame laskee jokaisen pelaajan kokonaispisteet:
+SELECT 
+  PLAYERNAME,
+  SUM(PLAYERSCORE) AS total_score,
+  COUNT(*) AS games_played
+FROM game
+GROUP BY PLAYERNAME
+ORDER BY total_score ASC
+LIMIT 10;
+
+
+Frontend näyttää rankingin taulukossa.
+
+👤 Profiilisivu
+Profiilisivu näyttää:
+- Käyttäjän nimen
+- PLAYER_TAG
+- Pelikohtaiset pisteet
+- Pelikohtaisen kokonaisajan
+
+🧪 Kehitysohjeet
 Lisää uusi peli
 - Lisää peli gamtitle‑tauluun
 - Luo React‑komponentti pelille
@@ -132,5 +230,13 @@ Lisää uusi API‑endpoint
 - Käytä db_projectaa.query(...)
 - Palauta JSON
 
+🔮 Tulevat ominaisuudet
+- Pelikohtaiset leaderboardit
+- Käyttäjän avatarit
+- Viikkotason rankingit
+- Admin‑paneeli
+- Lisää minipelejä
 
-!! -- Tämä projekti on avoin ja vapaasti kehitettävissä. -- !!
+📄 Lisenssi
+Tämä projekti on avoin ja vapaasti kehitettävissä.
+

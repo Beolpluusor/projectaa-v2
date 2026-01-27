@@ -58,7 +58,7 @@ export default function HallOfFame() {
                     </thead>
 
                     <tbody>
-                        {sortedPlayers.map((p, index) => (
+                        {sortedPlayers.slice(0, 10).map((p, index) => (
                             <tr key={index}>
                                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
                                     {index + 1}

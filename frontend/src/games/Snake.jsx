@@ -15,6 +15,16 @@ export default function Matopeli() {
     const boardSize = 20;
     const intervalRef = useRef(null);
 
+
+    const clearPlayerTag = () => {
+        localStorage.removeItem("reaction_start_time");
+        localStorage.removeItem("reaction_ready");
+        localStorage.removeItem("selected_game");
+
+        navigate("/gamespage");
+
+    }
+
     // Haetaan pelaajan nimi localStoragesta
     useEffect(() => {
         const storedTag = localStorage.getItem("player_tag");
@@ -184,7 +194,7 @@ export default function Matopeli() {
                     );
                 })}
             </div>
-            <button onClick={() => navigate("/gamespage")}>back to games</button>
+            <button onClick={clearPlayerTag}>back to games</button>
         </div>
     );
 }

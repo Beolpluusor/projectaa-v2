@@ -11,6 +11,15 @@ export default function ReaktioPeli() {
     const [reactionTime, setReactionTime] = useState(null);
     const userId = localStorage.getItem("user_id");
 
+    const clearPlayerTag = () => {
+        localStorage.removeItem("reaction_start_time");
+        localStorage.removeItem("reaction_ready");
+        localStorage.removeItem("selected_game");
+
+        navigate("/gamespage");
+
+    }
+
     // Haetaan player_tag localStoragesta kun komponentti käynnistyy
     useEffect(() => {
         const storedTag = localStorage.getItem("player_tag");
@@ -90,7 +99,7 @@ export default function ReaktioPeli() {
                 )}
                 
             </div>
-            <button onClick={() => navigate("/gamespage")}>back to games</button>
+            <button onClick={clearPlayerTag}>back to games</button>
         </div>
     );
 }

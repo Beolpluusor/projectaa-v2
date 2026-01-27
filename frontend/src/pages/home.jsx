@@ -7,11 +7,9 @@ export default function Home() {
   const Footer = () => <footer><p>© 2026 Project AA by Arttu Sonne</p></footer>;
   const Information = () => (
     <div>
-      Login system - works fine<br />
-      Database connection - works fine<br />
-      Frontend and Backend connection - works fine<br />
-      first game added "reaction game" , feel free to test your skills!<br />
-      More features coming soon!
+      <h2>simple arcade game page</h2>
+      <p>made by Arttu Sonne</p>
+      <p>simple arcade game page, point of this game is to learn how to build this kind of simple singlepage app.</p>
     </div>
   );
 

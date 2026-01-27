@@ -171,7 +171,7 @@ app.get("/profile/:userId", (req, res) => {
         console.error("Profile query error:", err);
         return res.status(500).json({ success: false, message: "Server error" });
       }
-      console.log("PROFILE ROWS:", rows)
+      
       res.json({
         success: true,
         userId,
@@ -233,6 +233,40 @@ app.post("/save_reaction_score", (req, res) => {
     }
   );
 });
+
+// =========================
+// HALL OF FAME
+// =========================
+// palauttaa json:
+//[
+//  { "PLAYERNAME": "Beolpluusor", "total_score": 110.3, "games_played": 16 },
+//  { "PLAYERNAME": "just", "total_score": 55.2, "games_played": 8 }
+//]
+
+// =========================
+app.get("/hall_of_fame", (req, res) => {
+  db_projectaa.query(
+    `
+      SELECT 
+        PLAYERNAME,
+        SUM(PLAYERSCORE) AS total_score,
+        COUNT(*) AS games_played
+      FROM game
+      GROUP BY PLAYERNAME
+      ORDER BY total_score ASC
+      LIMIT 10
+    `,
+    (err, rows) => {
+      if (err) {
+        console.error("Hall of Fame error:", err);
+        return res.status(500).json({ error: "Database error" });
+      }
+      
+      res.json(rows);
+    }
+  );
+});
+
 
 // =========================
 // START SERVER

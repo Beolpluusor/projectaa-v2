@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2026 at 03:05 PM
+-- Generation Time: Jan 27, 2026 at 10:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,30 +40,32 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`ID_GAME`, `PLAYERNAME`, `PLAYERSCORE`, `GAMETIME`, `GAMEID`) VALUES
-(6, 'Beolpluusor', 0, 1338, NULL),
-(12, 'Beolpluusor', 532, 532, 6),
-(13, 'Beolpluusor', 396, 396, 6),
-(14, 'just', 593, 593, 6),
-(15, 'just', 674, 674, 6),
-(16, 'just', 871, 871, 6),
-(17, 'just', 875, 875, 6),
-(18, 'just', 801, 801, 6),
-(19, 'just', 302, 302, 6),
-(20, 'just', 653, 653, 6),
-(21, 'shadisti', 350, 350, 6),
-(22, 'shadisti', 288, 288, 6),
-(23, 'shadisti', 310, 310, 6),
-(24, 'shadisti', 289, 289, 6),
-(25, 'shadisti', 433, 433, 6),
-(26, 'halifax', 393, 393, 6),
-(27, 'halifax', 355, 355, 6),
-(28, 'halifax', 361, 361, 6),
-(29, 'halifax', 319, 319, 6),
-(30, 'halifax', 519, 519, 6),
-(31, 'halifax', 2546, 2546, 6),
-(32, 'Beolpluusor', 0, 0, 6),
-(33, 'Beolpluusor', 0.424, 0, 6),
-(34, 'Beolpluusor', 0.415, 0.415, 6);
+(49, 'Beolpluusor', 0.7, 0.7, 6),
+(50, 'Beolpluusor', 0.451, 0.451, 6),
+(51, 'Beolpluusor', 0.429, 0.429, 6),
+(52, 'Beolpluusor', 10, 16, 1),
+(53, 'Beolpluusor', 10, 16, 1),
+(54, 'Beolpluusor', 2, 5, 1),
+(55, 'Beolpluusor', 2, 5, 1),
+(56, 'Beolpluusor', 3.109, 3.109, 6),
+(57, 'Beolpluusor', 12, 21, 1),
+(58, 'Beolpluusor', 12, 21, 1),
+(59, 'Beolpluusor', 0.872, 0.872, 6),
+(60, 'Beolpluusor', 9.762, 9.762, 6),
+(61, 'Beolpluusor', 0, 2, 1),
+(62, 'Beolpluusor', 0, 2, 1),
+(63, 'Beolpluusor', 24, 37, 1),
+(64, 'Beolpluusor', 24, 37, 1),
+(65, 'just', 0.422, 0.422, 6),
+(66, 'just', 0.382, 0.382, 6),
+(67, 'just', 14, 22, 1),
+(68, 'just', 14, 22, 1),
+(69, 'halifax', 0.375, 0.375, 6),
+(70, 'halifax', 0.381, 0.381, 6),
+(71, 'halifax', 0.385, 0.385, 6),
+(72, 'halifax', 0.43, 0.43, 6),
+(73, 'halifax', 16, 24, 1),
+(74, 'halifax', 16, 24, 1);
 
 -- --------------------------------------------------------
 
@@ -99,6 +101,28 @@ CREATE TABLE `scores` (
   `user_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+--
+-- Dumping data for table `scores`
+--
+
+INSERT INTO `scores` (`id`, `user_id`, `game_id`) VALUES
+(1, 18, 59),
+(2, 18, 60),
+(3, 18, 61),
+(4, 18, 62),
+(5, 18, 63),
+(6, 18, 64),
+(7, 21, 65),
+(8, 21, 66),
+(9, 21, 67),
+(10, 21, 68),
+(11, 23, 69),
+(12, 23, 70),
+(13, 23, 71),
+(14, 23, 72),
+(15, 23, 73),
+(16, 23, 74);
 
 -- --------------------------------------------------------
 
@@ -163,7 +187,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `game`
 --
 ALTER TABLE `game`
-  MODIFY `ID_GAME` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID_GAME` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `gamtitle`
@@ -175,7 +199,7 @@ ALTER TABLE `gamtitle`
 -- AUTO_INCREMENT for table `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`

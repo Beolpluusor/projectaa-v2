@@ -91,7 +91,7 @@ export default function TestArea() {
 
     return (
         <div>
-            <h1>Test environment</h1>
+            <h1>Project AA - Test environment</h1>
             <NavigationBar />
             <Laskuri />
             <hr />

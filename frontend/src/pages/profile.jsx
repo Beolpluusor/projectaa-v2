@@ -23,7 +23,7 @@ export default function ProfilePage() {
 
     return (
         <div>
-            <h1>Project AA</h1>
+            <h1>Project AA - Profile </h1>
             <NavigationBar />
             <h2>Profile Page</h2>
 
@@ -33,12 +33,12 @@ export default function ProfilePage() {
                 <div className="card">Player Tag: {savedTag}</div>
             </div>
 
-            <div style={styles.container}>
-                <h2>Pelihistoria</h2>
+            <div>
+                <h2>Game history:</h2>
 
-                <div style={styles.cardContainer}>
+                <div>
                     {games.map((game, index) => (
-                        <div key={index} style={styles.card}>
+                        <div>
                             <h3>{game.game_name}</h3>
 
                             <p><strong>Alltime Scores:</strong> {Math.round(game.total_score)}</p>

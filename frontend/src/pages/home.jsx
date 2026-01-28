@@ -43,7 +43,7 @@ export default function Home() {
   // Pääkomponentin renderöinti
   return (
     <div>
-      <h1>welcome to project AA</h1>
+      <h1>Project AA - Home</h1>
       <NavigationBar />
       <Header />
       <UserPrinter />

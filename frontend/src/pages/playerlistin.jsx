@@ -44,10 +44,10 @@ export default function UsersList() {
   // ========================
   return (
     <div>
-        <h1>Project AA</h1>
+        <h1>Project AA - Database page</h1>
         <NavigationBar />
     <div>
-      <h2>All Users</h2>
+      <h2>Project AA - All Users</h2>
 
       {users.length === 0 && <p>No users found</p>}
 

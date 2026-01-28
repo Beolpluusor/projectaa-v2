@@ -21,7 +21,6 @@ export default function NavigationBar() {
             <button onClick={() => navigate('/playerlistin')}>DataBase information</button>
             <button onClick={() => navigate('/gamespage')}>Games</button>
             <button onClick={() => navigate('/halloffame')}>Hall of Fame</button>
-            <button onClick={() => navigate('/testarea')}>TestArea</button>
             <button onClick={handleLogout}>Logout</button>
             
         </nav>

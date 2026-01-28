@@ -27,7 +27,7 @@ export default function GamesPage() {
     const GameBoxRender = function () {
         return gamesDisplay.map((game) => {
             return (
-                    <div className="gamer-card">
+                    <div style={styles.cardContainer}>
                         <h3>{game.GAMEID}</h3>
                         <p>{game.GAMENAME}</p>
                         <button onClick={() => navigate("")}>Play</button>
@@ -39,17 +39,29 @@ export default function GamesPage() {
 
     return (
         <div>
-            <h1>Games</h1>
+            <h1>Project AA - Games</h1>
             <NavigationBar />
-            <div>
-                <h2>Reaction Game</h2>
-                <button onClick={() => navigate("/reactiongame")}>Play</button>
-            </div>
 
             <div>
-                <h2>Snake</h2>
-                <button onClick={() => navigate("/snake")}>Play</button>
+                <div>
+                    <div>
+                        <div>
+                        <h2>Reaction Game</h2>
+                        <button onClick={() => navigate("/reactiongame")}>Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <div>
+                        <h2>Snake</h2>
+                        <button onClick={() => navigate("/snake")}>Play</button>
+                        </div>
+                    </div>
+                </div>  
             </div>
+            
         </div>
     );
 }

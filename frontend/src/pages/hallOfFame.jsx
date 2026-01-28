@@ -41,7 +41,7 @@ export default function HallOfFame() {
     
     return (
         <div>
-            <h1>Hall of Fame</h1>
+            <h1>Project AA - Hall of Fame</h1>
             <NavigationBar />
 
             <div style={{ padding: "20px" }}>

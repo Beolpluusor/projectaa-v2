@@ -80,7 +80,16 @@ export default function ProfilePage() {
       <Stack spacing="lg" mt="xl" align="center">
         <Title order={2}>Game History</Title>
 
-        <Stack spacing="md">
+        <SimpleGrid
+          cols={3}
+          spacing="lg"
+          w="100%"
+          breakpoints={[
+            { maxWidth: "lg", cols: 3 },
+            { maxWidth: "md", cols: 2 },
+            { maxWidth: "sm", cols: 1 },
+          ]}
+        >
           {games.map((game, index) => (
             <Card key={index} shadow="sm" radius="md" padding="lg">
               <Title order={3}>{game.game_name}</Title>
@@ -94,7 +103,7 @@ export default function ProfilePage() {
               </Text>
             </Card>
           ))}
-        </Stack>
+        </SimpleGrid>
       </Stack>
     </Layout>
   );

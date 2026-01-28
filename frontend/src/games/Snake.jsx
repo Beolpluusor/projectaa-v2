@@ -138,14 +138,7 @@ export default function Matopeli() {
 
   return (
     <Layout>
-      <Title
-        order={1}
-        fw={700}
-        fz={48}
-        c="blue.7"
-        ta="center"
-        ff="Georgia, serif"
-      >
+      <Title>
         Project AA – Snake Game
       </Title>
 

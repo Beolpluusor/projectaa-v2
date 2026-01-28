@@ -1,72 +1,76 @@
-import NavigationBar from "./navigationbar";
 import { useEffect, useState } from "react";
+import { Title, Text, Stack, Card, SimpleGrid } from "@mantine/core";
+import NavigationBar from "./navigationbar";
+import Layout from "../assets/styles/Layout";
 
 export default function ProfilePage() {
-    const userId = localStorage.getItem("user_id");
-    const username = localStorage.getItem("username");
-    const savedTag = localStorage.getItem("player_tag");
+  const userId = localStorage.getItem("user_id");
+  const username = localStorage.getItem("username");
+  const savedTag = localStorage.getItem("player_tag");
 
-    const [games, setGames] = useState([]);
+  const [games, setGames] = useState([]);
 
-    useEffect(() => {
-        if (!userId) return;
+  useEffect(() => {
+    if (!userId) return;
 
-        fetch(`http://localhost:5000/profile/${userId}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setGames(data.games);
-                }
-            })
-            .catch(err => console.error("Fetch error:", err));
-    }, [userId]);
+    fetch(`http://localhost:5000/profile/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setGames(data.games);
+        }
+      })
+      .catch((err) => console.error("Fetch error:", err));
+  }, [userId]);
 
-    return (
-        <div>
-            <h1>Project AA - Profile </h1>
-            <NavigationBar />
-            <h2>Profile Page</h2>
+  return (
+    <Layout>
+      <Title>
+        Project AA – Profile
+      </Title>
 
-            <div className="dashboard-card">
-                <div className="card">Player ID: {userId}</div>
-                <div className="card">Username: {username}</div>
-                <div className="card">Player Tag: {savedTag}</div>
-            </div>
+      <NavigationBar />
 
-            <div>
-                <h2>Game history:</h2>
+      <Title>Profile Page</Title>
 
-                <div>
-                    {games.map((game, index) => (
-                        <div>
-                            <h3>{game.game_name}</h3>
+      {/* User info cards */}
+      <SimpleGrid cols={3} spacing="lg">
+        <Card shadow="md" radius="md" padding="lg">
+          <Text fw={600}>Player ID:</Text>
+          <Text>{userId}</Text>
+        </Card>
 
-                            <p><strong>Alltime Scores:</strong> {Math.round(game.total_score)}</p>
-                            <p><strong>Total Time:</strong> {Math.round(game.total_time)} seconds</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
+        <Card shadow="md" radius="md" padding="lg">
+          <Text fw={600}>Username:</Text>
+          <Text>{username}</Text>
+        </Card>
+
+        <Card shadow="md" radius="md" padding="lg">
+          <Text fw={600}>Player Tag:</Text>
+          <Text>{savedTag}</Text>
+        </Card>
+      </SimpleGrid>
+
+      {/* Game history */}
+      <Stack spacing="lg" mt="xl" align="center">
+        <Title order={2}>Game History</Title>
+
+        <Stack spacing="md">
+          {games.map((game, index) => (
+            <Card key={index} shadow="sm" radius="md" padding="lg">
+              <Title order={3}>{game.game_name}</Title>
+
+              <Text>
+                <strong>Alltime Scores:</strong> {Math.round(game.total_score)}
+              </Text>
+
+              <Text>
+                <strong>Total Time:</strong> {Math.round(game.total_time)} seconds
+              </Text>
+            </Card>
+          ))}
+        </Stack>
+      </Stack>
+    </Layout>
+  );
 }
-
-const styles = {
-    container: {
-        padding: "20px",
-        maxWidth: "800px",
-        margin: "0 auto"
-    },
-    cardContainer: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-        gap: "20px"
-    },
-    card: {
-        background: "#1e1e1e",
-        padding: "20px",
-        borderRadius: "10px",
-        color: "white",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.3)"
-    }
-};

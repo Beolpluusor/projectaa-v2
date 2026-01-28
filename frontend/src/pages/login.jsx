@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button, Stack, Title, Text } from "@mantine/core";
+import Layout from "../assets/styles/Layout";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+
   const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:5000/login", {
@@ -15,18 +17,16 @@ export default function Login() {
       });
 
       if (response.data.message === "login_success") {
-        // setting user_id localStorage, this denies the need to login again when refreshing the page
-        localStorage.setItem("user_id", response.data.user); // id
-        localStorage.setItem("username", response.data.username); // username
-        localStorage.setItem("player_tag", response.data.player_tag); // player tag
+        localStorage.setItem("user_id", response.data.user);
+        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("player_tag", response.data.player_tag);
         alert("Login successful");
         navigate("/home");
-        
       }
+
       if (response.data.message === "invalid_credentials") {
         alert("wrong password or username");
         navigate("/");
-        
       }
 
     } catch (err) {
@@ -36,30 +36,37 @@ export default function Login() {
   };
 
   return (
-    <div >
-      <h2>Login</h2>
+    <Layout>
+      <Title>
+        Login
+      </Title>
 
-      <input
-        type="text"
-        placeholder="Username"
-        maxLength={20}
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      <Stack spacing="sm" align="center">
+        <input
+          type="text"
+          placeholder="Username"
+          maxLength={20}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        maxLength={4}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          maxLength={4}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </Stack>
 
-      <button onClick={handleLogin}>Login</button>
-      <p>new user? then click the register button to get in the fun</p>
+      <Stack spacing="md" align="center">
+        <Button onClick={handleLogin}>Login</Button>
+        <Button onClick={() => navigate("/")}>Back to mainpage</Button>
 
-      <button onClick={() => navigate("/")}>Back to mainpage</button>
-    </div>
+        <Text size="sm" c="dimmed">
+          new user? then click the register button to get in the fun
+        </Text>
+      </Stack>
+    </Layout>
   );
 }
-

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mantine/core'
 
 
 export default function NavigationBar() {
@@ -16,12 +17,12 @@ export default function NavigationBar() {
             padding: '10px',
             background: "#eee"
         }}>
-            <button onClick={() => navigate('/home')}>Home</button>
-            <button onClick={() => navigate('/profile')}>Profile</button>
-            <button onClick={() => navigate('/playerlistin')}>DataBase information</button>
-            <button onClick={() => navigate('/gamespage')}>Games</button>
-            <button onClick={() => navigate('/halloffame')}>Hall of Fame</button>
-            <button onClick={handleLogout}>Logout</button>
+            <Button onClick={() => navigate('/home')}>Home</Button>
+            <Button onClick={() => navigate('/profile')}>Profile</Button>
+            <Button onClick={() => navigate('/playerlistin')}>DataBase information</Button>
+            <Button onClick={() => navigate('/gamespage')}>Games</Button>
+            <Button onClick={() => navigate('/halloffame')}>Hall of Fame</Button>
+            <Button onClick={handleLogout}>Logout</Button>
             
         </nav>
     );

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button, Stack, Title, Text } from "@mantine/core";
+import Layout from "../assets/styles/Layout";
 
 export default function RegisterNewUser() {
   const [username, setUsername] = useState("");
@@ -20,15 +22,17 @@ export default function RegisterNewUser() {
         alert("New user created");
         navigate("/home");
       }
+
       if (response.data.message === "user_exists") {
         alert("User already exists");
         navigate("/register");
       }
+
       if (response.data.message === "missing_fields") {
-        alert("fill all the fields, no empty fields allowed");
+        alert("Fill all the fields, no empty fields allowed");
         navigate("/register");
       }
-      
+
     } catch (err) {
       console.error(err);
       alert("Error in server");
@@ -36,40 +40,45 @@ export default function RegisterNewUser() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <Layout>
+      <Title>
+        Register
+      </Title>
 
-      <input
-        type="text"
-        placeholder="Username"
-        maxLength={20}
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      <Stack spacing="sm" align="center">
+        <input
+          type="text"
+          placeholder="Username"
+          maxLength={20}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        maxLength={4}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          maxLength={4}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <input
-        type="text"
-        placeholder="Player Tag"
-        maxLength={50}
-        value={player_tag}
-        onChange={(e) => setPlayerTag(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Player Tag"
+          maxLength={50}
+          value={player_tag}
+          onChange={(e) => setPlayerTag(e.target.value)}
+        />
+      </Stack>
 
-      <button onClick={handleRegister}>Register</button>
-      <br />
-      <button onClick={() => navigate("/")}>Back to mainpage</button>
-    </div>
+      <Stack spacing="md" align="center">
+        <Button onClick={handleRegister}>Register</Button>
+        <Button onClick={() => navigate("/")}>Back to mainpage</Button>
+
+        <Text size="sm" c="dimmed">
+          Already have an account? Go back and login
+        </Text>
+      </Stack>
+    </Layout>
   );
 }
-
-
-
-

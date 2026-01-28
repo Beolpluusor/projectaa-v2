@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Title, Text, Stack, Card, SimpleGrid } from "@mantine/core";
 import NavigationBar from "./navigationbar";
+import Layout from "../assets/styles/Layout";
 
 export default function UsersList() {
-    // getting users from database to list as list, then using map to display
   const [users, setUsers] = useState([]);
+  const [gamesDisplay, setGames] = useState([]);
 
+  // Load users
   useEffect(() => {
     const loadUsers = async () => {
       try {
@@ -20,57 +23,70 @@ export default function UsersList() {
 
     loadUsers();
   }, []);
-  
-  // getting games from database to list as list, then using map to display
-  const [gamesDisplay, setGames] = useState([]);
+
+  // Load games
   useEffect(() => {
     const loadGames = async () => {
-        try {
-            const response = await axios.get("http://localhost:5000/games");
-            if (response.data.status === "ok") {
-                setGames(response.data.gamename);
-            }
-        } catch (err) {
-            console.error("Error loading games:", err);
+      try {
+        const response = await axios.get("http://localhost:5000/games");
+        if (response.data.status === "ok") {
+          setGames(response.data.gamename);
         }
+      } catch (err) {
+        console.error("Error loading games:", err);
+      }
     };
 
     loadGames();
   }, []);
 
-  
-  // ========================
-  // rendering all users and their player tags in to page
-  // ========================
   return (
-    <div>
-        <h1>Project AA - Database page</h1>
-        <NavigationBar />
-    <div>
-      <h2>Project AA - All Users</h2>
+    <Layout>
+      <Title>
+        Project AA – Database Page
+      </Title>
 
-      {users.length === 0 && <p>No users found</p>}
+      <NavigationBar />
 
-      <ul>
-        {users.map((u) => (
-          <li key={u.id}>
-            <strong>{u.username}</strong> — Tag: {u.PLAYER_TAG}
-          </li>
-        ))}
-      </ul>
-    </div>
-      <div>
-        <h2>All Games</h2>
-        {gamesDisplay.length === 0 && <p>No games found</p>}
-        <ul>
-            {gamesDisplay.map((g) => (
-                <li key={g.GAMEID}>
-                    Game ID: {g.GAMEID}— Game Name: {g.GAMENAME}
-                </li>
-            ))}
-        </ul>
-      </div>
-    </div>
+      {/* USERS SECTION */}
+      <Stack spacing="md" align="center" mt="xl">
+        <Title order={2}>All Users</Title>
+
+        {users.length === 0 && (
+          <Text size="sm" c="dimmed">
+            No users found
+          </Text>
+        )}
+
+        <SimpleGrid cols={3} spacing="md">
+          {users.map((u) => (
+            <Card key={u.id} shadow="sm" radius="md" padding="lg">
+              <Text fw={600}>{u.username}</Text>
+              <Text size="sm">Tag: {u.PLAYER_TAG}</Text>
+            </Card>
+          ))}
+        </SimpleGrid>
+      </Stack>
+
+      {/* GAMES SECTION */}
+      <Stack spacing="md" align="center" mt="xl">
+        <Title order={2}>Game Titles in Database</Title>
+
+        {gamesDisplay.length === 0 && (
+          <Text size="sm" c="dimmed">
+            No games found
+          </Text>
+        )}
+
+        <SimpleGrid cols={3} spacing="md">
+          {gamesDisplay.map((g) => (
+            <Card key={g.GAMEID} shadow="sm" radius="md" padding="lg">
+              <Text fw={600}>Game ID: {g.GAMEID}</Text>
+              <Text>Game Name: {g.GAMENAME}</Text>
+            </Card>
+          ))}
+        </SimpleGrid>
+      </Stack>
+    </Layout>
   );
 }
-

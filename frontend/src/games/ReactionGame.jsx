@@ -1,105 +1,126 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../pages/navigationbar";
-
+import { Title, Text, Button, Stack, Card } from "@mantine/core";
+import Layout from "../assets/styles/Layout";
 
 export default function ReaktioPeli() {
-    const navigate = useNavigate();
-    const [playerTag, setPlayerTag] = useState("");
-    const [status, setStatus] = useState("idle");
-    const [startTime, setStartTime] = useState(null);
-    const [reactionTime, setReactionTime] = useState(null);
-    const userId = localStorage.getItem("user_id");
+  const navigate = useNavigate();
+  const [playerTag, setPlayerTag] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [startTime, setStartTime] = useState(null);
+  const [reactionTime, setReactionTime] = useState(null);
+  const userId = localStorage.getItem("user_id");
 
-    const clearPlayerTag = () => {
-        localStorage.removeItem("reaction_start_time");
-        localStorage.removeItem("reaction_ready");
-        localStorage.removeItem("selected_game");
+  const clearPlayerTag = () => {
+    localStorage.removeItem("reaction_start_time");
+    localStorage.removeItem("reaction_ready");
+    localStorage.removeItem("selected_game");
+    navigate("/gamespage");
+  };
 
-        navigate("/gamespage");
-
+  useEffect(() => {
+    const storedTag = localStorage.getItem("player_tag");
+    if (storedTag) {
+      setPlayerTag(storedTag);
     }
+  }, []);
 
-    // Haetaan player_tag localStoragesta kun komponentti käynnistyy
-    useEffect(() => {
-        const storedTag = localStorage.getItem("player_tag");
-        if (storedTag) {
-            setPlayerTag(storedTag);
-        }
-    }, []);
+  const startGame = () => {
+    setStatus("waiting");
+    setReactionTime(null);
 
-    const startGame = () => {
-        setStatus("waiting");
-        setReactionTime(null);
+    const delay = Math.random() * 2000 + 1000;
 
-        const delay = Math.random() * 2000 + 1000;
+    setTimeout(() => {
+      setStartTime(Date.now());
+      setStatus("click");
+    }, delay);
+  };
 
-        setTimeout(() => {
-            setStartTime(Date.now());
-            setStatus("click");
-        }, delay);
-    };
+  const handleClick = async () => {
+    if (status !== "click") return;
 
-    const handleClick = async () => {
-        
-        if (status !== "click") return;
+    const end = Date.now();
+    const time = end - startTime;
+    const scoreCalculator = time / 1000;
 
-        const end = Date.now();
-        const time = end - startTime;
-        const scoreCalculator = time / 1000;
-        
-        setReactionTime(time);
-        setStatus("done");
+    setReactionTime(time);
+    setStatus("done");
 
-        await fetch("http://localhost:5000/save_reaction_score", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                PLAYER_TAG: playerTag,
-                GAMEID: 6,
-                PLAYERSCORE: scoreCalculator,
-                GAMETIME: time / 1000,
-                user_id: userId
-            })
-        });
-    };
-    
-    return (
-        <div>
-            <h1>Project AA</h1>
-            <NavigationBar />
-            <div style={{ padding: "20px" }}>
-                <h2>Reaction Game</h2>
+    await fetch("http://localhost:5000/save_reaction_score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        PLAYER_TAG: playerTag,
+        GAMEID: 6,
+        PLAYERSCORE: scoreCalculator,
+        GAMETIME: time / 1000,
+        user_id: userId,
+      }),
+    });
+  };
 
-                <p>Player: <strong>{playerTag || "not set"}</strong></p>
+  return (
+    <Layout>
+      <Title
+        order={1}
+        fw={700}
+        fz={48}
+        c="blue.7"
+        ta="center"
+        ff="Georgia, serif"
+      >
+        Project AA – Reaction Game
+      </Title>
 
-                {status === "idle" && (
-                    <button onClick={startGame}>Start Game</button>
-                )}
+      <NavigationBar />
 
-                {status === "waiting" && (
-                    <p>Get Ready to Click!...</p>
-                )}
+      <Card shadow="md" radius="md" padding="xl" mt="xl">
+        <Stack spacing="lg" align="center">
+          <Title order={2}>Reaction Game</Title>
 
-                {status === "click" && (
-                    <button
-                        onClick={handleClick}
-                        style={{ padding: "20px", fontSize: "20px" }}
-                    >
-                        Click Now!!
-                    </button>
-                )}
+          <Text>
+            Player: <strong>{playerTag || "not set"}</strong>
+          </Text>
 
-                {status === "done" && (
-                    <>
-                        <p>Your reaction time: {reactionTime} ms</p>
-                        <button onClick={startGame}>Play again</button>
-                        
-                    </>
-                )}
-                
-            </div>
-            <button onClick={clearPlayerTag}>back to games</button>
-        </div>
-    );
+          {status === "idle" && (
+            <Button size="lg" onClick={startGame}>
+              Start Game
+            </Button>
+          )}
+
+          {status === "waiting" && (
+            <Text fw={600} fz="lg">
+              Get Ready to Click…
+            </Text>
+          )}
+
+          {status === "click" && (
+            <Button
+              size="xl"
+              onClick={handleClick}
+              style={{ padding: "20px", fontSize: "20px" }}
+            >
+              CLICK NOW!!
+            </Button>
+          )}
+
+          {status === "done" && (
+            <Stack spacing="md" align="center">
+              <Text fw={600} fz="lg">
+                Your reaction time: {reactionTime} ms
+              </Text>
+
+              <Button onClick={startGame}>Play Again</Button>
+            </Stack>
+          )}
+        </Stack>
+      </Card>
+
+      <Button color="red" mt="xl" onClick={clearPlayerTag}>
+        Back to Games
+      </Button>
+    </Layout>
+  );
 }

@@ -1,17 +1,23 @@
 import { useNavigate } from "react-router-dom";
-
-
+import { Button, Group, Title, Image } from "@mantine/core";
 import aaLogo from "/aalogo.png";
+import Layout from "../assets/styles/Layout";
 
-export default function WelcomeToAA () {
-    const navigate = useNavigate();
+export default function WelcomeToAA() {
+  const navigate = useNavigate();
 
-    return (
-        <div className="main-page">
-            <h1>Project AA</h1>
-            <img src={aaLogo} alt="Logo" width="200" height="200"/>
-            <button onClick={() => navigate("/Login")}>Login</button>
-            <button onClick={() => navigate("/register")}>Register</button>
-        </div>
-    );
+  return (
+    <Layout>
+      <Title>
+        Project AA
+      </Title>
+
+      <Image src={aaLogo} alt="Logo" width={200} height={200} />
+
+      <Group>
+        <Button onClick={() => navigate("/Login")}>Login</Button>
+        <Button onClick={() => navigate("/register")}>Register</Button>
+      </Group>
+    </Layout>
+  );
 }

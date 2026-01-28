@@ -1,82 +1,80 @@
 import { useEffect, useState } from "react";
+import { Title, Text, Card, Table, Stack } from "@mantine/core";
 import NavigationBar from "./navigationbar";
+import Layout from "../assets/styles/Layout";
 
 export default function HallOfFame() {
-    const [players, setPlayers] = useState([]);
-    const [error, setError] = useState(null);
+  const [players, setPlayers] = useState([]);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/hall_of_fame")
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error("Server error");
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log("Hall of Fame data:", data);
+  useEffect(() => {
+    fetch("http://localhost:5000/hall_of_fame")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Server error");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid data format");
+        }
+        setPlayers(data);
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setError("Failed to load Hall of Fame");
+      });
+  }, []);
 
-                if (!Array.isArray(data)) {
-                    throw new Error("Invalid data format");
-                }
-
-                setPlayers(data);
-            })
-            .catch(err => {
-                console.error("Fetch error:", err);
-                setError("Failed to load Hall of Fame");
-            });
-    }, []);
-
-    if (error) {
-        return (
-          <div>
-            <h1>Hall of Fame</h1>
-            <p>{error}</p>
-          </div>
-        );
-    }
-    // sorting the list from lowest to top, that topscores are index 1. etc..
-    const sortedPlayers = [...players].sort((a, b) => b.total_score - a.total_score);
-    
+  if (error) {
     return (
-        <div>
-            <h1>Project AA - Hall of Fame</h1>
-            <NavigationBar />
-
-            <div style={{ padding: "20px" }}>
-                <h2>Top 10 Players</h2>
-
-                <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                    <thead>
-                        <tr style={{ background: "#ddd" }}>
-                            <th style={{ padding: "10px", border: "1px solid #ccc" }}>Rank</th>
-                            <th style={{ padding: "10px", border: "1px solid #ccc" }}>Player</th>
-                            <th style={{ padding: "10px", border: "1px solid #ccc" }}>Total Score</th>
-                            <th style={{ padding: "10px", border: "1px solid #ccc" }}>Games Played</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {sortedPlayers.slice(0, 10).map((p, index) => (
-                            <tr key={index}>
-                                <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                                    {index + 1}
-                                </td>
-                                <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                                    {p.PLAYERNAME}
-                                </td>
-                                <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                                    {Math.round(p.total_score)}
-                                </td>
-                                <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                                    {p.games_played}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+      <Layout>
+        <Title order={1}>Hall of Fame</Title>
+        <Text c="red">{error}</Text>
+      </Layout>
     );
+  }
+
+  const sortedPlayers = [...players].sort(
+    (a, b) => b.total_score - a.total_score
+  );
+
+  return (
+    <Layout>
+      <Title>
+        Project AA – Hall of Fame
+      </Title>
+
+      <NavigationBar />
+
+      <Card shadow="md" radius="md" padding="xl" mt="xl" w="100%">
+        <Stack spacing="lg" align="center">
+          <Title order={2}>Top 10 Players</Title>
+
+          <Table striped highlightOnHover withTableBorder withColumnBorders>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Rank</Table.Th>
+                <Table.Th>Player</Table.Th>
+                <Table.Th>Total Score</Table.Th>
+                <Table.Th>Games Played</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+
+            <Table.Tbody>
+              {sortedPlayers.slice(0, 10).map((p, index) => (
+                <Table.Tr key={index}>
+                  <Table.Td>{index + 1}</Table.Td>
+                  <Table.Td>{p.PLAYERNAME}</Table.Td>
+                  <Table.Td>{Math.round(p.total_score)}</Table.Td>
+                  <Table.Td>{p.games_played}</Table.Td>
+                </Table.Tr>
+              ))}
+            </Table.Tbody>
+          </Table>
+        </Stack>
+      </Card>
+    </Layout>
+  );
 }

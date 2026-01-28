@@ -2,66 +2,53 @@ import { useNavigate } from "react-router-dom";
 import NavigationBar from "./navigationbar";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Button, Title, Card, Stack, SimpleGrid, Text } from "@mantine/core";
+import Layout from "../assets/styles/Layout";
 
 export default function GamesPage() {
-    const navigate = useNavigate();
-    const gamestouse = '/reactiongame';
+  const navigate = useNavigate();
 
-    // getting games from database to list as list, then using map to display
-    const [gamesDisplay, setGames] = useState([]);
-    useEffect(() => {
-        const loadGames = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/games");
-                if (response.data.status === "ok") {
-                    setGames(response.data.gamename);
-                }
-            } catch (err) {
-                console.error("Error loading games:", err);
-            }
-        };
+  const [gamesDisplay, setGames] = useState([]);
 
-        loadGames();
-    }, []);
+  useEffect(() => {
+    const loadGames = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/games");
+        if (response.data.status === "ok") {
+          setGames(response.data.gamename);
+        }
+      } catch (err) {
+        console.error("Error loading games:", err);
+      }
+    };
 
-    const GameBoxRender = function () {
-        return gamesDisplay.map((game) => {
-            return (
-                    <div style={styles.cardContainer}>
-                        <h3>{game.GAMEID}</h3>
-                        <p>{game.GAMENAME}</p>
-                        <button onClick={() => navigate("")}>Play</button>
-                </div>
-            );
-        })
-    }
+    loadGames();
+  }, []);
 
+  return (
+    <Layout>
+      <Title>
+        Project AA – Games
+      </Title>
 
-    return (
-        <div>
-            <h1>Project AA - Games</h1>
-            <NavigationBar />
+      <NavigationBar />
 
-            <div>
-                <div>
-                    <div>
-                        <div>
-                        <h2>Reaction Game</h2>
-                        <button onClick={() => navigate("/reactiongame")}>Play</button>
-                        </div>
-                    </div>
-                </div>
+      {/* STATIC GAMES */}
+      <SimpleGrid cols={2} spacing="xl" mt="xl">
+        <Card shadow="md" radius="md" padding="xl">
+          <Stack spacing="md" align="center">
+            <Title order={2}>Reaction Game</Title>
+            <Button onClick={() => navigate("/reactiongame")}>Play</Button>
+          </Stack>
+        </Card>
 
-                <div>
-                    <div>
-                        <div>
-                        <h2>Snake</h2>
-                        <button onClick={() => navigate("/snake")}>Play</button>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-            
-        </div>
-    );
+        <Card shadow="md" radius="md" padding="xl">
+          <Stack spacing="md" align="center">
+            <Title order={2}>Snake</Title>
+            <Button onClick={() => navigate("/snake")}>Play</Button>
+          </Stack>
+        </Card>
+      </SimpleGrid>
+    </Layout>
+  );
 }

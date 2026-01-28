@@ -159,7 +159,7 @@ export default function Matopeli() {
             Player: <strong>{playerTag}</strong>
           </Text>
 
-          <Text>Pisteet: {score}</Text>
+          <Text>Scores: {score}</Text>
 
           {gameOver && (
             <Stack spacing="sm" align="center">

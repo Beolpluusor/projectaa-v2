@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Button, Title, Card, Stack, SimpleGrid, Text } from "@mantine/core";
 import Layout from "../assets/styles/Layout";
 
+import { Helmet } from "react-helmet-async"; // meta optimization import
+
 export default function GamesPage() {
   const navigate = useNavigate();
 
@@ -27,6 +29,27 @@ export default function GamesPage() {
 
   return (
     <Layout>
+        <Helmet>
+          <title>Project AA – Games</title>
+
+          <meta
+            name="description"
+            content="project aa games page where games are located."
+          />
+
+          <meta
+            name="keywords"
+            content="games, projectaa, arcade"
+          />
+
+          {/* Sosiaalisen median esikatselu */}
+          <meta property="og:title" content="Project AA – games" />
+          <meta
+            property="og:description"
+            content="games page where the playable games are."
+          />
+          <meta property="og:type" content="website" />
+      </Helmet>
       <Title>
         Project AA – Games
       </Title>

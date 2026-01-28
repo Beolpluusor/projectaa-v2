@@ -3,6 +3,9 @@ import { Title, Text, Stack, Card, SimpleGrid } from "@mantine/core";
 import NavigationBar from "./navigationbar";
 import Layout from "../assets/styles/Layout";
 
+import { Helmet } from "react-helmet-async"; // meta optimization import
+
+
 export default function ProfilePage() {
   const userId = localStorage.getItem("user_id");
   const username = localStorage.getItem("username");
@@ -25,6 +28,28 @@ export default function ProfilePage() {
 
   return (
     <Layout>
+        <Helmet>
+          <title>Project AA – Profile</title>
+
+          <meta
+            name="description"
+            content="project aa profile page where is player id, username and playertag and gamehistory."
+          />
+
+          <meta
+            name="keywords"
+            content="profile, projectaa"
+          />
+
+          {/* Sosiaalisen median esikatselu */}
+          <meta property="og:title" content="Project AA – Sivun nimi" />
+          <meta
+            property="og:description"
+            content="project aa profile page where is player scores and history of games."
+          />
+          <meta property="og:type" content="website" />
+      </Helmet>
+
       <Title>
         Project AA – Profile
       </Title>

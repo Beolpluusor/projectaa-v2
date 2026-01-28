@@ -3,6 +3,8 @@ import { Title, Text, Card, Table, Stack } from "@mantine/core";
 import NavigationBar from "./navigationbar";
 import Layout from "../assets/styles/Layout";
 
+import { Helmet } from "react-helmet-async"; // meta optimization import
+
 export default function HallOfFame() {
   const [players, setPlayers] = useState([]);
   const [error, setError] = useState(null);
@@ -42,6 +44,27 @@ export default function HallOfFame() {
 
   return (
     <Layout>
+              <Helmet>
+          <title>Project AA – HallOfFame</title>
+
+          <meta
+            name="description"
+            content="hall of fame page where are listed top players."
+          />
+
+          <meta
+            name="keywords"
+            content="profile, projectaa, halloffame, scoreslist, scores"
+          />
+
+          {/* Sosiaalisen median esikatselu */}
+          <meta property="og:title" content="Project AA – HallOfFame" />
+          <meta
+            property="og:description"
+            content="halloffame page where are top layers listed."
+          />
+          <meta property="og:type" content="website" />
+      </Helmet>
       <Title>
         Project AA – Hall of Fame
       </Title>

@@ -3,6 +3,8 @@ import NavigationBar from "./navigationbar";
 import { Title, Text, Stack } from "@mantine/core";
 import Layout from "../assets/styles/Layout";
 
+import { Helmet } from "react-helmet-async"; // meta optimization import
+
 export default function Home() {
   const navigate = useNavigate();
 
@@ -37,6 +39,28 @@ export default function Home() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Project AA – Home</title>
+
+        <meta
+          name="description"
+          content="project aa homepage where is greetings to user and updates if theres something changed on site."
+        />
+
+        <meta
+          name="keywords"
+          content="project aa, reaction game, snake game, hall of fame, players, database"
+        />
+
+        {/* Sosiaalisen median esikatselu */}
+        <meta property="og:title" content="Project AA – Sivun nimi" />
+        <meta
+          property="og:description"
+          content="Lyhyt kuvaus sivusta sosiaalisen median esikatselua varten."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       <Title>
         Project AA - Home
       </Title>

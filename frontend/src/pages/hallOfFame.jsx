@@ -44,7 +44,7 @@ export default function HallOfFame() {
 
   return (
     <Layout>
-              <Helmet>
+        <Helmet>
           <title>Project AA – HallOfFame</title>
 
           <meta
@@ -56,6 +56,8 @@ export default function HallOfFame() {
             name="keywords"
             content="profile, projectaa, halloffame, scoreslist, scores"
           />
+
+          <link rel="canonical" href="https://yourdomain.com/currentpage" />
 
           {/* Sosiaalisen median esikatselu */}
           <meta property="og:title" content="Project AA – HallOfFame" />

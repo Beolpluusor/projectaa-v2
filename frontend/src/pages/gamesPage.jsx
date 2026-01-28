@@ -42,6 +42,8 @@ export default function GamesPage() {
             content="games, projectaa, arcade"
           />
 
+          <link rel="canonical" href="https://yourdomain.com/currentpage" />
+          
           {/* Sosiaalisen median esikatselu */}
           <meta property="og:title" content="Project AA – games" />
           <meta

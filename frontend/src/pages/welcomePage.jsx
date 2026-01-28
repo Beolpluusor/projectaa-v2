@@ -22,6 +22,8 @@ export default function WelcomeToAA() {
           name="keywords"
           content="project aa, reaction game, snake game, hall of fame, players, small project, fun, games"
         />
+        
+        <link rel="canonical" href="https://yourdomain.com/currentpage" />
 
         {/* Sosiaalisen median esikatselu */}
         <meta property="og:title" content="Project AA - home page" />

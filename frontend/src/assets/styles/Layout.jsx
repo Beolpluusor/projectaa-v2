@@ -2,7 +2,7 @@ import { Box, Stack } from "@mantine/core";
 
 export default function Layout({ children }) {
   return (
-    <Box
+    <Box component="main"
       bg="orange.1"
       w="100%"          // täysi leveys
       h="100%"          // täysi korkeus

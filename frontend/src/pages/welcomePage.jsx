@@ -12,7 +12,7 @@ export default function WelcomeToAA() {
         Project AA
       </Title>
 
-      <Image src={aaLogo} alt="Logo" width={200} height={200} />
+      <Image src={aaLogo} alt="Logo" width={200} height={200} fit="contain" />
 
       <Group>
         <Button onClick={() => navigate("/Login")}>Login</Button>

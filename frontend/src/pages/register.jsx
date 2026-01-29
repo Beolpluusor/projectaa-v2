@@ -20,7 +20,7 @@ export default function RegisterNewUser() {
 
       if (response.data.message === "user_created") {
         alert("New user created");
-        navigate("/home");
+        navigate("/login");
       }
 
       if (response.data.message === "user_exists") {
@@ -76,7 +76,7 @@ export default function RegisterNewUser() {
         <Button onClick={() => navigate("/")}>Back to mainpage</Button>
 
         <Text size="sm" c="dimmed">
-          Already have an account? Go back and login
+          Remember to fill all the boxes, password is max 4 length.
         </Text>
       </Stack>
     </Layout>

@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mantine/core";
+import { Box, Stack, Text } from "@mantine/core";
 
 export default function Layout({ children }) {
   return (
@@ -33,6 +33,20 @@ export default function Layout({ children }) {
       >
         {children}
       </Stack>
+
+      <Box
+        component="footer"
+        mt="xl"
+        pt="md"
+        style={{
+          textAlign: "center",
+          borderTop: "1px solid #ccc",
+        }}
+      >
+        <Text size="sm" c="dimmed">
+          © {new Date().getFullYear()} Project AA — All rights reserved
+        </Text>
+      </Box>
     </Box>
   );
 }

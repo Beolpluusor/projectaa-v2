@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// pages
 import WelcomePage from "./pages/welcomePage";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import RegisterNewUser from "./pages/register";
 import ProfilePage from "./pages/profile";
 import PlayerListIn from "./pages/playerlistin";
-import ReactionGame from "./games/ReactionGame";
-import Snake from "./games/Snake";
 import GamesPage from "./pages/gamesPage";
 import HallOfFame from "./pages/hallOfFame";
+
+//games
+import ReactionGame from "./games/ReactionGame";
+import Snake from "./games/Snake";
 
 
 export default function App() {

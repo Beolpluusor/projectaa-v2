@@ -53,7 +53,7 @@ export default function ReaktioPeli() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         PLAYER_TAG: playerTag,
-        GAMEID: 6,
+        GAMEID: 2,
         PLAYERSCORE: scoreCalculator,
         GAMETIME: time / 1000,
         user_id: userId,

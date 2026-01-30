@@ -15,7 +15,7 @@ export default function GamesPage() {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/games");
+        const response = await axios.get("http://192.168.1.198/games");
         if (response.data.status === "ok") {
           setGames(response.data.gamename);
         }

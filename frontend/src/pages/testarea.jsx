@@ -67,7 +67,7 @@ export default function TestArea() {
 
     if (newTag && newTag !== savedTag) {
         try {
-            const response = await axios.post("http://localhost:5000/update_player_tag", {
+            const response = await axios.post("http://192.168.1.198/update_player_tag", {
                 user_id,
                 new_player_tag: newTag
             });

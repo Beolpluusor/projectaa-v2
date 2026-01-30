@@ -16,7 +16,7 @@ export default function ProfilePage() {
   useEffect(() => {
     if (!userId) return;
 
-    fetch(`http://localhost:5000/profile/${userId}`)
+    fetch(`http://192.168.1.198/profile/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

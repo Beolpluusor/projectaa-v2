@@ -10,7 +10,7 @@ export default function HallOfFame() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/hall_of_fame")
+    fetch("http://192.168.1.198/hall_of_fame")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Server error");

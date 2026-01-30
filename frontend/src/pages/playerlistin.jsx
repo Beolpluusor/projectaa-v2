@@ -12,7 +12,7 @@ export default function UsersList() {
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/players");
+        const response = await axios.get("http://192.168.1.198/players");
         if (response.data.status === "ok") {
           setUsers(response.data.users);
         }
@@ -28,7 +28,7 @@ export default function UsersList() {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/games");
+        const response = await axios.get("http://192.168.1.198/games");
         if (response.data.status === "ok") {
           setGames(response.data.gamename);
         }

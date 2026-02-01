@@ -16,9 +16,9 @@ export default function GamesPage() {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const response = await apiGet("/games");
-        if (response.status === "ok") {
-          setGames(response.gamename);
+        const data = await apiGet("/games");
+        if (data.status === "ok") {
+          setGames(data.gamename);
         }
       } catch (err) {
         console.error("Error loading games:", err);

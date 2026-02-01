@@ -15,7 +15,7 @@ export default function UsersList() {
       try {
         const response = await apiPost("/players");
 
-        if (response.data.status === "ok") {
+        if (response.status === "ok") {
           setUsers(response.users);
         }
       } catch (err) {
@@ -32,7 +32,7 @@ export default function UsersList() {
       try {
         const response = await apiPost("/games");
 
-        if (response.data.status === "ok") {
+        if (response.status === "ok") {
           setGames(response.gamename);
         }
       } catch (err) {

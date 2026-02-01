@@ -50,15 +50,11 @@ export default function ReaktioPeli() {
     setStatus("done");
 
     await apiPost("/save_reaction_score", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        PLAYER_TAG: playerTag,
-        GAMEID: 2,
-        PLAYERSCORE: scoreCalculator,
-        GAMETIME: time / 1000,
-        user_id: userId,
-      }),
+      PLAYER_TAG: playerTag,
+      GAMEID: 2,
+      PLAYERSCORE: scoreCalculator,
+      GAMETIME: time / 1000,
+      user_id: userId,
     });
   };
 

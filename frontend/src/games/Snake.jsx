@@ -116,15 +116,11 @@ export default function Matopeli() {
     const timeSeconds = Math.floor((endTime - startTime) / 1000);
 
     await apiPost("/save_reaction_score", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        PLAYER_TAG: playerTag,
-        GAMEID: 1,
-        PLAYERSCORE: score,
-        GAMETIME: timeSeconds,
-        user_id: userId,
-      }),
+      PLAYER_TAG: playerTag,
+      GAMEID: 1,
+      PLAYERSCORE: score,
+      GAMETIME: timeSeconds,
+      user_id: userId,
     });
   };
 

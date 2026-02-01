@@ -1,8 +1,9 @@
 import { useState } from "react";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { Button, Stack, Title, Text } from "@mantine/core";
 import Layout from "../assets/styles/Layout";
+import { apiPost } from "../api";
 
 export default function RegisterNewUser() {
   const [username, setUsername] = useState("");
@@ -12,23 +13,23 @@ export default function RegisterNewUser() {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://192.168.1.198/register", {
+      const response = await apiPost("/register", {
         username,
         password,
         player_tag
       });
 
-      if (response.data.message === "user_created") {
+      if (response.message === "user_created") {
         alert("New user created");
         navigate("/login");
       }
 
-      if (response.data.message === "user_exists") {
+      if (response.message === "user_exists") {
         alert("User already exists");
         navigate("/register");
       }
 
-      if (response.data.message === "missing_fields") {
+      if (response.message === "missing_fields") {
         alert("Fill all the fields, no empty fields allowed");
         navigate("/register");
       }

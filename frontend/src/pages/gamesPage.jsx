@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "./navigationbar";
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { Button, Title, Card, Stack, SimpleGrid, Text } from "@mantine/core";
 import Layout from "../assets/styles/Layout";
+import { apiGet } from "../api";
 
 import { Helmet } from "react-helmet-async"; // meta optimization import
 
@@ -15,9 +16,9 @@ export default function GamesPage() {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const response = await axios.get("http://192.168.1.198/games");
-        if (response.data.status === "ok") {
-          setGames(response.data.gamename);
+        const response = await apiGet("/games");
+        if (response.status === "ok") {
+          setGames(response.gamename);
         }
       } catch (err) {
         console.error("Error loading games:", err);

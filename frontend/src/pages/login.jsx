@@ -1,9 +1,11 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, Stack, Title, Text } from "@mantine/core";
 import Layout from "../assets/styles/Layout";
+import { apiPost } from "../api";
 
+// tee import apipots kaikkiin tietokanta pyyntöihin ja muist importit
+// katso tältä sivulta esimerkki handlelogin kohdasta
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,20 +13,21 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://192.168.1.198/login", {
+      const response = await apiPost("/login",  {
         username,
         password
       });
 
-      if (response.data.message === "login_success") {
-        localStorage.setItem("user_id", response.data.user);
-        localStorage.setItem("username", response.data.username);
-        localStorage.setItem("player_tag", response.data.player_tag);
+      if (response.message === "login_success") {
+        localStorage.setItem("user_id", response.user);
+        localStorage.setItem("username", response.username);
+        localStorage.setItem("player_tag", response.player_tag);
+
         alert("Login successful");
         navigate("/home");
       }
 
-      if (response.data.message === "invalid_credentials") {
+      if (response.message === "invalid_credentials") {
         alert("wrong password or username");
         navigate("/");
       }

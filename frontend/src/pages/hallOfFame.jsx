@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Title, Text, Card, Table, Stack } from "@mantine/core";
 import NavigationBar from "./navigationbar";
 import Layout from "../assets/styles/Layout";
-
+import { apiGet } from "../api";
 import { Helmet } from "react-helmet-async"; // meta optimization import
 
 export default function HallOfFame() {
@@ -10,24 +10,23 @@ export default function HallOfFame() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://192.168.1.198/hall_of_fame")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Server error");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (!Array.isArray(data)) {
-          throw new Error("Invalid data format");
-        }
-        setPlayers(data);
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-        setError("Failed to load Hall of Fame");
-      });
-  }, []);
+  const loadData = async () => {
+    try {
+      const data = await apiGet("/hall_of_fame");
+
+      if (!Array.isArray(data)) {
+        throw new Error("Invalid data format");
+      }
+
+      setPlayers(data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setError("Failed to load Hall of Fame");
+    }
+  };
+
+  loadData();
+}, []);
 
   if (error) {
     return (

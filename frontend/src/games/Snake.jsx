@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavigationBar from "../pages/navigationbar";
 import { Title, Text, Button, Stack, Card } from "@mantine/core";
 import Layout from "../assets/styles/Layout";
+import { apiPost } from "../api";
 
 export default function Matopeli() {
   const navigate = useNavigate();
@@ -114,7 +115,7 @@ export default function Matopeli() {
     const endTime = Date.now();
     const timeSeconds = Math.floor((endTime - startTime) / 1000);
 
-    await fetch("http://localhost:5000/save_reaction_score", {
+    await apiPost("/save_reaction_score", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { Title, Text, Stack, Card, SimpleGrid } from "@mantine/core";
 import NavigationBar from "./navigationbar";
 import Layout from "../assets/styles/Layout";
+import { apiPost } from "../api";
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
@@ -12,9 +13,10 @@ export default function UsersList() {
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        const response = await axios.get("http://192.168.1.198/players");
+        const response = await apiPost("/players");
+
         if (response.data.status === "ok") {
-          setUsers(response.data.users);
+          setUsers(response.users);
         }
       } catch (err) {
         console.error("Error loading users:", err);
@@ -28,9 +30,10 @@ export default function UsersList() {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const response = await axios.get("http://192.168.1.198/games");
+        const response = await apiPost("/games");
+
         if (response.data.status === "ok") {
-          setGames(response.data.gamename);
+          setGames(response.gamename);
         }
       } catch (err) {
         console.error("Error loading games:", err);

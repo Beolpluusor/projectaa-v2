@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Title, Text, Stack, Card, SimpleGrid } from "@mantine/core";
 import NavigationBar from "./navigationbar";
 import Layout from "../assets/styles/Layout";
-
+import { apiGet } from "../api";
 import { Helmet } from "react-helmet-async"; // meta optimization import
 
 
@@ -16,15 +16,14 @@ export default function ProfilePage() {
   useEffect(() => {
     if (!userId) return;
 
-    fetch(`http://192.168.1.198/profile/${userId}`)
-      .then((res) => res.json())
+    apiGet(`/profile/${userId}`)
       .then((data) => {
         if (data.success) {
-          setGames(data.games);
+          setGames(data.games)
         }
       })
       .catch((err) => console.error("Fetch error:", err));
-  }, [userId]);
+    }, [userId]);
 
   return (
     <Layout>

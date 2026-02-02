@@ -3,45 +3,43 @@ import { useEffect, useState } from "react";
 import { Title, Text, Stack, Card, SimpleGrid } from "@mantine/core";
 import NavigationBar from "./navigationbar";
 import Layout from "../assets/styles/Layout";
-import { apiPost } from "../api";
+import { apiGet } from "../api";
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
   const [gamesDisplay, setGames] = useState([]);
 
-  // Load users
   useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        const response = await apiPost("/players");
+  const loadUsers = async () => {
+    try {
+      const response = await apiGet("/players");
 
-        if (response.status === "ok") {
-          setUsers(response.users);
-        }
-      } catch (err) {
-        console.error("Error loading users:", err);
+      if (response.status === "ok") {
+        setUsers(response.users);
       }
-    };
+    } catch (err) {
+      console.error("Error loading users:", err);
+    }
+  };
 
-    loadUsers();
-  }, []);
+  loadUsers();
+}, []);
 
-  // Load games
-  useEffect(() => {
-    const loadGames = async () => {
-      try {
-        const response = await apiPost("/games");
+useEffect(() => {
+  const loadGames = async () => {
+    try {
+      const response = await apiGet("/games");
 
-        if (response.status === "ok") {
-          setGames(response.gamename);
-        }
-      } catch (err) {
-        console.error("Error loading games:", err);
+      if (response.status === "ok") {
+        setGames(response.gamename);
       }
-    };
+    } catch (err) {
+      console.error("Error loading games:", err);
+    }
+  };
 
-    loadGames();
-  }, []);
+  loadGames();
+}, []);
 
   return (
     <Layout>

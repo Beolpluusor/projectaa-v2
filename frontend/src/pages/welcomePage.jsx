@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Group, Title, Image } from "@mantine/core";
-import aaLogo from "/aalogo.png";
+import aaLogo from "../aalogo.png";
 import Layout from "../assets/styles/Layout";
 import { Helmet } from "react-helmet-async";
 

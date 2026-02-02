@@ -1,210 +1,269 @@
 
-🎮 Project AA — Full‑Stack Arcade Game Platform
-My very first full‑stack project — and the first one I’ve fully finished.
-This project was created to learn how to build a React‑based website, how frontend and backend communicate, and how a small arcade‑style game platform could work in practice.
-I used AI (Copilot) during development to help me move faster and focus on understanding the architecture and communication between backend and frontend. Even with help, some parts were challenging — especially SQL queries and database logic.
-Inside the project folder, you will find a database import file that sets up the full MySQL schema.
-Some example users and game scores are included so you can immediately see how the data appears on the website.
-Feel free to explore this project if you’re learning React, Node, or full‑stack development.
-This has been a great learning experience for me — now I know how to build a database, a backend, and a frontend from scratch.
-Below is the full documentation generated with the help of Copilot.
 
-📘 README.md — Project AA (projectaa‑v2)
-🎮 Project AA — Full‑Stack Game Platform
-A modern React + Node.js + MySQL arcade platform where users can register, play minigames, view their profile statistics, and climb the Hall of Fame leaderboard.
+###########################################################################
+📦 Project AA v2 – Asennusohjeet
+Tämä ohje kertoo, kuinka Project AA v2 ‑sovellus asennetaan ja käynnistetään paikallisesti Windows‑ympäristössä XAMPP:in ja Node.js:n avulla.
 
-🚀 Table of Contents
-- Overview
-- Technologies
-- Architecture
-- Installation
-- Database Structure
-- Backend API
-- Frontend Structure
-- Games
-- Hall of Fame
-- Profile Page
-- Development Guide
-- Future Features
+🔧 1. Vaatimukset
+Varmista, että seuraavat ovat asennettuna:
+- Node.js (v18+ suositeltu)
+https://nodejs.org
+- XAMPP (Apache + MySQL)
+https://www.apachefriends.org
+- Git
+https://git-scm.com
+###########################################################################
 
-🧩 Overview
-Project AA is a complete full‑stack application featuring:
-- User registration and login (bcrypt‑hashed passwords)
-- Player profiles with customizable PLAYER_TAG
-- Game score saving into a MySQL database
-- A profile page showing each user’s game history
-- A Hall of Fame leaderboard showing the top players
-- A React‑based user interface
-- A Node.js + Express backend API
-The system is designed to be easily expandable — new games can be added with minimal changes.
-
-🛠️ Technologies
-Frontend
-- React
-- React Router
-- CSS / inline styles
-Backend
-- Node.js
-- Express
-- MySQL2
-- bcrypt
-- CORS
-Database
-- MariaDB / MySQL
-- phpMyAdmin (for development)
-
-🏗️ Architecture
-projectaa-v2/
-│
-├── backend/
-│   └── server.js        # Express backend + API
-│
-├── frontend/
-│   ├── src/
-│   │   ├── pages/       # Profile, Games, Hall of Fame
-│   │   ├── components/  # Navigation, UI elements
-│   │   ├── games/       # Game components (e.g., ReactionGame)
-│   │   └── App.js
-│   └── package.json
-│
-└── README.md
-
-
-
-⚙️ Installation
-1. Clone the repository
+📥 2. Projektin lataus
+Avaa komentorivi ja suorita:
 git clone https://github.com/Beolpluusor/projectaa-v2
+cd projectaa-v2
 
 
-2. Install and run the backend
-cd backend
-npm install
-node server.js
+Projektissa on kaksi pääosaa:
+/frontend
+/backend
 
-
-Backend runs on http://localhost:5000
-3. Install and run the frontend
-cd frontend
-npm install
-npm start
-
-
-Frontend runs on http://localhost:3000
-4. Create the MySQL database
-Create a database named:
+###########################################################################
+🗄️ 3. MySQL-tietokannan asennus (XAMPP)
+- Käynnistä XAMPP Control Panel
+- Käynnistä Apache ja MySQL
+- Avaa phpMyAdmin:
+http://localhost/phpmyadmin
+- Luo uusi tietokanta:
 projectaa
 
 
-Then import the included SQL dump using phpMyAdmin or MySQL CLI.
-
-🗄️ Database Structure
-users
- id  username  PASSWORD  PLAYER_TAG 
-game
- ID_GAME  PLAYERNAME  PLAYERSCORE  GAMETIME  GAMEID 
-scores
- id  user_id  game_id 
-gamtitle
- GAMEID  GAMENAME 
-Relationships
-- users.id → scores.user_id
-- game.ID_GAME → scores.game_id
-- gamtitle.GAMEID → game.GAMEID
-
-🔌 Backend API
-🔐 POST /login
-Authenticates a user.
-🧾 POST /register
-Creates a new user.
-🏷️ POST /update_player_tag
-Updates the player’s tag.
-👤 GET /profile/:userId
-Returns the user’s game history:
-{
-  "success": true,
-  "userId": 18,
-  "games": [
-    {
-      "game_name": "ReactionGame",
-      "total_score": 12.5,
-      "total_time": 5.2
-    }
-  ]
-}
+- Tuo projektin mukana tuleva SQL‑tiedosto:
+backend/database/projectaa_structure.sql
 
 
-🏆 GET /hall_of_fame
-Returns the top 10 players:
-[
-  { "PLAYERNAME": "Beolpluusor", "total_score": 111.32, "games_played": 16 }
-]
+Tämä luo kaikki taulut ja rakenteet.
 
-
-🎮 POST /save_reaction_score
-Saves a ReactionGame score.
-
-🎨 Frontend Structure
-Main pages
-- /login
-- /register
-- /profile/:id
-- /gamespage
-- /halloffame
-- /reaktiopeli
-Navigation
-NavigationBar.jsx provides links between pages.
-
-🎯 Games
-Reaction Game
-- Waits a random delay
-- Player clicks as fast as possible
-- Saves:
-- PLAYER_TAG
-- PLAYERSCORE (seconds)
-- GAMETIME
-- GAMEID = 6
-
-🏆 Hall of Fame
-The leaderboard calculates each player’s total score:
-SELECT 
-  PLAYERNAME,
-  SUM(PLAYERSCORE) AS total_score,
-  COUNT(*) AS games_played
-FROM game
-GROUP BY PLAYERNAME
-ORDER BY total_score ASC
-LIMIT 10;
+###########################################################################
+⚙️ 4. Backendin asennus
+Siirry backend‑kansioon:
+cd backend
 
 
-Displayed in a ranking table on the frontend.
+Asenna riippuvuudet:
+npm install
 
-👤 Profile Page
-Shows:
-- Username
-- PLAYER_TAG
-- Total score per game
-- Total time per game
 
-🧪 Development Guide
-Adding a new game
-- Add the game to gamtitle
-- Create a React component for the game
-- Add a backend route to save scores
-- Assign a unique GAMEID
-- Add the game to navigation
-Adding a new API endpoint
-- Add a new Express route
-- Use db_projectaa.query(...)
-- Return JSON
+Luo backendin .env‑tiedosto:
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=projectaa
+PORT=3001
 
-🔮 Future Features
-- Game‑specific leaderboards
-- Player avatars
-- Weekly rankings
-- Admin panel
-- More minigames
 
-📄 License
-This project is open for learning, modification, and exploration.
+Käynnistä backend:
+node server.js
 
-If you want, I can also prepare a shorter version, a developer‑focused version, or a GitHub‑optimized version with badges and visuals.
+
+Backend toimii nyt osoitteessa:
+http://localhost:3001
+
+###########################################################################
+🚀 6. Sovelluksen käyttö
+- Avaa selain ja siirry osoitteeseen:
+http://localhost:5173
+
+
+- Rekisteröi uusi käyttäjä
+- Kirjaudu sisään
+- Pelaa Reaction Game tai Snake
+- Tulokset tallentuvat tietokantaan
+- Voit tarkastella profiilia, Hall of Famea ja käyttäjälistaa
+- 
+###########################################################################
+🛠️ 7. Projektin rakenne
+projectaa-v2/
+│
+├── backend/        # Node.js + Express + MySQL API
+│   ├── server.js
+│   ├── routes/
+│   ├── controllers/
+│   └── database/
+│
+└── frontend/       # React + Vite + Mantine UI
+    ├── src/
+    ├── pages/
+    ├── components/
+    └── assets/
+###########################################################################
+
+
+
+========================================================
+ Project AA v2 – Asennusohjeet XAMPP- ja LAMP-palvelimille
+========================================================
+
+Tämä tiedosto sisältää täydelliset ohjeet Project AA v2 -sovelluksen
+asentamiseen sekä Windowsin XAMPP-ympäristöön että Linuxin LAMP-palvelimelle.
+
+Projekti koostuu kahdesta osasta:
+
+  1) FRONTEND  (React + Vite + Mantine)
+  2) BACKEND   (Node.js + Express + MySQL)
+
+Frontend toimii Apache-palvelimen kautta.
+Backend toimii Node.js-palveluna (portti 3001).
+Apache toimii reverse proxyna backendille.
+
+--------------------------------------------------------
+ 1. VAATIMUKSET
+--------------------------------------------------------
+
+- Node.js 18+
+- MySQL / MariaDB
+- Apache 2.4+
+- Git
+- XAMPP (Windows) TAI LAMP (Linux)
+- mod_proxy ja mod_proxy_http Apache-moduulit
+
+--------------------------------------------------------
+ 2. PROJEKTIN LATAUS
+--------------------------------------------------------
+
+git clone https://github.com/Beolpluusor/projectaa-v2
+cd projectaa-v2
+
+Projektissa on kaksi kansiota:
+
+  /frontend
+  /backend
+
+--------------------------------------------------------
+ 3. TIETOKANNAN ASENNUS (XAMPP & LAMP)
+--------------------------------------------------------
+
+1. Avaa phpMyAdmin:
+   http://localhost/phpmyadmin
+
+2. Luo tietokanta:
+
+   projectaa
+
+3. Tuo SQL-rakenne:
+
+   backend/database/projectaa_structure.sql
+
+--------------------------------------------------------
+ 4. BACKENDIN ASENNUS (Node.js)
+--------------------------------------------------------
+
+cd backend
+npm install
+
+Luo .env-tiedosto:
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=projectaa
+PORT=3001
+
+Käynnistä backend:
+
+node server.js
+
+Backend toimii osoitteessa:
+http://localhost:3001
+
+--------------------------------------------------------
+ 5. FRONTENDIN ASENNUS
+--------------------------------------------------------
+
+cd frontend
+npm install
+
+Luo .env:
+
+VITE_API_URL=http://yourdomain.com/api
+
+Buildaa tuotantoversio:
+
+npm run build
+
+Tämä luo kansion:
+frontend/dist
+
+--------------------------------------------------------
+ 6. FRONTENDIN ASENNUS APACHEEN
+--------------------------------------------------------
+
+XAMPP (Windows):
+  Kopioi dist/ → C:\xampp\htdocs\projectaa\
+
+LAMP (Linux):
+  Kopioi dist/ → /var/www/html/projectaa/
+
+--------------------------------------------------------
+ 7. APACHE REVERSE PROXY BACKENDILLE
+--------------------------------------------------------
+
+XAMPP (Windows):
+  Muokkaa:
+    C:\xampp\apache\conf\extra\httpd-vhosts.conf
+
+LAMP (Linux):
+  Muokkaa:
+    /etc/apache2/sites-available/000-default.conf
+
+Lisää:
+
+<VirtualHost *:80>
+    ServerName yourdomain.com
+    DocumentRoot "/var/www/html/projectaa"
+
+    ProxyPreserveHost On
+    ProxyPass /api http://localhost:3001
+    ProxyPassReverse /api http://localhost:3001
+</VirtualHost>
+
+--------------------------------------------------------
+ 8. APACHE-MODUULIEN AKTIVOINTI
+--------------------------------------------------------
+
+XAMPP (Windows):
+  Varmista että nämä rivit EIVÄT ole kommentoituina:
+
+    LoadModule proxy_module modules/mod_proxy.so
+    LoadModule proxy_http_module modules/mod_proxy_http.so
+
+LAMP (Linux):
+
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo systemctl restart apache2
+
+--------------------------------------------------------
+ 9. TESTAUS
+--------------------------------------------------------
+
+Avaa selain:
+
+Frontend:
+  http://yourdomain.com
+
+Backend (proxyn kautta):
+  http://yourdomain.com/api/login
+  http://yourdomain.com/api/profile/5
+
+--------------------------------------------------------
+ 10. VALMIS!
+--------------------------------------------------------
+
+Project AA v2 toimii nyt tuotantovalmiina Apache-palvelimella:
+
+- Frontend → Apache palvelee staattiset tiedostot
+- Backend → Node.js pyörii portissa 3001
+- Apache → välittää API-kutsut Node-palvelimelle
+
+========================================================
+
+
+
+

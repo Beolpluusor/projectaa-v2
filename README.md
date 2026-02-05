@@ -11,7 +11,7 @@ enjoy this project as I did building. if you have anything to ask just email me:
 its a website with full login/register system that uses database.  
 
 # why I made this project  
-point of this project is to learn full-stack building
+#### point of this project is to learn full-stack building
 - react /  single page application (SPA) website
  - SQL
  - frontend / backend communication

@@ -1,9 +1,10 @@
-# Installation setup/guide by: >Beolpluusor
-
+# Installation setup/guide by: Beolpluusor  
+# ! READ THIS FIRST!  
 Installation Guide, not fully tested, working on this and fixing all when done properly.  
 enjoy the project as I did building this.  
 if you have anything to ask just email me: arttu.sonne@live.co.uk  
----  
+--- 
+
 ## PROJECT AA installation
 [DEV installation](#project_aa_dev_installation)  
 [APACHE/LAMP installation](#project_aa_server_installation)  

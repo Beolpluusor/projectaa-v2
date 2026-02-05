@@ -11,9 +11,15 @@ enjoy this project as I did building. if you have anything to ask just email me:
 its a website with full login/register system that uses database.  
 
 # why I made this project  
-point of this project is to learn 
-- make react/singlepage app website
- - that uses database  
+point of this project is to learn full-stack building
+- react /  single page application (SPA) website
+ - SQL
+ - frontend / backend communication
+ - javascript
+ - modern web solutions
+ - web security  
+   
+- server installation 
  - learn how to install a website and sql database on a lamp/apache server. 
 
 # who am I

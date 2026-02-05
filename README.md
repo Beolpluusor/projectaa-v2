@@ -60,7 +60,7 @@ npm run dev
 
 installation isn't yet tested so there might be problems, im on to it when I have done few things.
 ### 1.
-####setup node:
+#### setup node:
 ```bash
  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
  sudo apt install -y nodejs

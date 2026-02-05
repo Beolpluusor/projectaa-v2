@@ -53,7 +53,7 @@ requirements:
      npm start
 
 
-  <p>if you want dev as automatic restart use</p>
+  <h3>if you want dev as automatic restart use</h3>
 
 
      ```bash
@@ -61,7 +61,7 @@ requirements:
 
 
 
-<h2>6.</h2> 
+<h2>5.</h2> 
    <h3>install frontend</h3>
       ```bash
       cd projectaa-v2/frontend

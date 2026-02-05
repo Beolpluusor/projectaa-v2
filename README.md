@@ -27,26 +27,26 @@
 <div>
    <h2>1.</h2>
       <h3>clone the project:</h3>
-      <p>
+      <p style="background-color: black; color: white;">
          git clone https://github.com/Beolpluusor/projectaa-v2
       </p>
    
    <h2>2.</h2>
       <h3>create the database from the file:</h3>
-      <p>
+      <p style="background-color: black; color: white;">
          projectaa_database.sql
       </p>
 
    <h2>3.</h2>
       <h3>install backend nodes</h3>
-       <p>
+       <p style="background-color: black; color: white;">
           cd backend
           npm install
        </p>
        
    <h2>4.</h2>
    <h3>run backend with command</h3>
-   <p>
+   <p style="background-color: black; color: white;">
      npm start
      if you want dev as automatic restart use
      npm run dev
@@ -54,7 +54,7 @@
    
    <h2>6.</h2> 
    <h3>install frontend</h3>
-   <p>
+   <p style="background-color: black; color: white;">
       cd projectaa-v2/frontend
       npm install
       npm run dev

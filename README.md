@@ -5,7 +5,7 @@ enjoy this project as I did building. if you have anything to ask just email me:
 ---
 ## PROJECT AA installation
 
-[APACHE/LAMP installation](#project-aa-server-installation)
+[APACHE/LAMP installation](#project_aa_server_installation)
 
 ## requirements:
 - Node.js 18 and npm
@@ -56,7 +56,7 @@ npm run dev
 
 
 
-# project-aa-server-installation
+# project_aa_server_installation
 # apache/Lamp server installation GUIDE 
 
 >installation isn't yet tested so there might be problems, im on to it when I have done few things.

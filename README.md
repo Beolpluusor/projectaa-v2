@@ -48,7 +48,7 @@ requirements:
 
     
 <h2>4.</h2>
-<h3>run backend with command</h3>
+   <h3>run backend with command</h3>
 
    ```bash
   npm start
@@ -63,12 +63,12 @@ requirements:
 
 
 <h2>6.</h2> 
-<h3>install frontend</h3>
-<p>
+   <h3>install frontend</h3>
+   ```bash
    cd projectaa-v2/frontend
    npm install
    npm run dev
-</p>
+
 
 
 !*** --- lamp/apache installation --- ***!

@@ -41,36 +41,36 @@ requirements:
 <h2>3.</h2>
    <h3>install backend nodes</h3>
 
-       ```bash
-       cd backend
-       npm install
+      ```bash
+      cd backend
+      npm install
 
     
 <h2>4.</h2>
    <h3>run backend with command</h3>
 
-   ```bash
-  npm start
+      ```bash
+     npm start
 
 
   if you want dev as automatic restart use
 
 
-   ```bash
-  npm run dev
+     ```bash
+     npm run dev
 
 
 
 <h2>6.</h2> 
    <h3>install frontend</h3>
-   ```bash
-   cd projectaa-v2/frontend
-   npm install
-   npm run dev
+      ```bash
+      cd projectaa-v2/frontend
+      npm install
+      npm run dev
 
 
 
-!*** --- lamp/apache installation --- ***!
+<h1>!*** --- lamp/apache installation --- ***!</h1>
 installation isn't yet tested so there might be problems, im on to it when I have done few things.
 1.
   setup node:

@@ -9,9 +9,13 @@ enjoy this project as I did building. if you have anything to ask just email me:
 
 # what is project-aa  
 its a website with full login/register system that uses database.  
+
 # why I made this project  
-point of this project is to learn to make react-based website that uses database to get and put information in sql database,  
-and learn how to install a website/sql datbase on a lamp/apache server. 
+point of this project is to learn 
+- make react/singlepage app website
+ - that uses database  
+ - learn how to install a website and sql database on a lamp/apache server. 
+
 # who am I
 My name is Arttu and Im a student at Riveria  
 when I started learning coding in Riveria I've had this project in my mind many years ago.  

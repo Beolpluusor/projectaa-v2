@@ -4,13 +4,18 @@ enjoy this project as I did building. if you have anything to ask just email me:
 
 PROJECT AA installation
 <div>
+   <h3>requirements:</h3>
    <ul>
       <li>
-         requirements:
          Node.js 18 and npm
+      </li>
+      <li>
          MYSQL-server
+      </li>
+      <li>
          GIT
       </li>
+      
    </ul>
 </div>
 

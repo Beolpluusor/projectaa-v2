@@ -80,10 +80,10 @@ npm run dev
 #### Create MYSQL
 ```bash
  mysql - u root -p
- CREATE DATABASE projectaa;
- import tables from the dump (projectaa_database.sql)
 ```
-
+##### CREATE DATABASE projectaa;
+ ##### import tables from the dump (projectaa_database.sql)
+ 
 ### 4.
 #### create backend .env:
 ```bash

@@ -22,8 +22,8 @@ requirements:
 
 <h2>1.</h2>
    <h3>clone the project:</h3>
-      ```bash
-      git clone https://github.com/Beolpluusor/projectaa-v2
+   ```bash
+   git clone https://github.com/Beolpluusor/projectaa-v2
    
 <h2>2.</h2>
    <h3>create the database from the file:</h3>

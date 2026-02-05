@@ -53,7 +53,7 @@ requirements:
      npm start
 
 
-  if you want dev as automatic restart use
+  <p>if you want dev as automatic restart use</p>
 
 
      ```bash

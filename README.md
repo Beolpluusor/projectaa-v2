@@ -1,14 +1,14 @@
-# made by: Beolpluusor
+# made by: Beolpluusor#
 
-####installation Guide, not fully tested, working on this and fixing all when done properly.
-####enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
+####installation Guide, not fully tested, working on this and fixing all when done properly.####
+####enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk####
 
-#PROJECT AA installation
+#PROJECT AA installation#
 
-##requirements:
-##Node.js 18 and npm
-##MYSQL-server
-##GIT
+##requirements:##
+##Node.js 18 and npm##
+##MYSQL-server##
+##GIT##
 
 dev installation
 

@@ -25,8 +25,7 @@ requirements:
 <h1>---dev installation</h1>
 
 <h2>1.</h2>
-   ```md
-   clone the project:
+   <h3>clone the project:</h3>
    
       ```bash
       git clone https://github.com/Beolpluusor/projectaa-v2

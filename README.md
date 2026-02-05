@@ -5,10 +5,12 @@ enjoy this project as I did building. if you have anything to ask just email me:
 PROJECT AA installation
 <div>
    <ul>
-      requirements:
-      Node.js 18 and npm
-      MYSQL-server
-      GIT
+      <li>
+         requirements:
+         Node.js 18 and npm
+         MYSQL-server
+         GIT
+      </li>
    </ul>
 </div>
 

@@ -69,7 +69,7 @@ npm run dev
 ```
 
 ### 2. 
-####clone the project:
+#### clone the project:
 ```bash
  cd /var/www
  sudo git clone https://github.com/Beolpluusor/projectaa-v2
@@ -77,47 +77,64 @@ npm run dev
 ```
 
 ### 3.
-Create MYSQL
-mysql - u root -p
-CREATE DATABASE projectaa;
-import tables from the dump (projectaa_database.sql)
+#### Create MYSQL
+```bash
+ mysql - u root -p
+ CREATE DATABASE projectaa;
+ import tables from the dump (projectaa_database.sql)
+```
+
 ### 4.
-create backend .env:
-cd /var/www/projectaa-v2/backend
-nano .env
-and put there:
-JWT_SECRET=supersecret123
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=projectaa
-,after those save and then close...
+#### create backend .env:
+```bash
+ cd /var/www/projectaa-v2/backend
+ nano .env
+ and put there:
+ JWT_SECRET=supersecret123
+ DB_HOST=localhost
+ DB_USER=root
+ DB_PASSWORD=
+ DB_NAME=projectaa
+```
+#### after those save and then close...
 
 ### 5. 
-install backend nodes:
-cd /var/www/projectaa-v2/backend
-npm install
+#### install backend nodes:
+```bash
+ cd /var/www/projectaa-v2/backend
+ npm install
+```
 
-### 6. start backend as prodcution (PM2)
+### 6. 
+#### start backend as prodcution (PM2)
+```bash
  sudo npm install -g pm2
  pm2 start server.js --nameprojectaa-backend
  pm2 save
  pm2 startup
-   backend is now running on port 5000
+```
+#### backend is now running on port 5000
  
-### 7. configurate pache reverse-proxy (recommended)
+### 7. 
+#### configurate pache reverse-proxy (recommended)
+```bash
    apache -> node backend
    apache -> react build
- get mod_proxy:
+```
+ #### get mod_proxy:
+ ```bash
    sudo a2enmod proxy
    sudo a2enmod proxy_http
    sudo Systemctl restart apache2
+```
  
- create virtual host:
+ #### create virtual host:
+ ```bash 
    sudo nano /etc/apache2/sites-available/projectaa.conf
- 
-    ***** inside put this ******:
- 
+ ```
+
+   #### ***** in the file copy this ******:
+  
    <VirtualHost *:80>
       ServerName yourdomain.com
 
@@ -133,28 +150,36 @@ npm install
       ProxyPassReverse /api http://localhost:5000/
   </VirtualHost>
 
-  then take it on use:
+ #### then take it on use:
+ ```bash
    sudo a2ensite projectaa.conf
    sudo Systemctl reload apache2
+```
 
-
-### 8. build frontend to production
+### 8. 
+#### build frontend to production:
+```bash
  cd /var/www/projectaa-v2/frontend
  npm install
  npm run build
+```
 
- create frontend .env:
+#### create frontend .env:
+```bash
    nano .env
- and in there put this:
+```
+#### and in there put this:
+```bash
    VITE_API_URL=/api
+```
 
-then test on browser: http://yourdomain.com
-log in
-check that if token is saved in localStorage
-test proected routes (players, profile, games)
+#### test on browser: http://yourdomain.com
+#### log in
+#### check that if token is saved in localStorage
+#### test proected routes (players, profile, games)
 
-All Done!
-you have now:
+#All Done!
+###you have now:
 - apache that serves as react-frontend
 - apache proxy that routes through /api -> node backend
 - node backend runs on pm2

@@ -1,15 +1,14 @@
-
 <h1>made by: <bold>Beolpluusor</bold></h1>
-<p>
-   installation Guide, not fully tested, working on this and fixing all when done properly.
-   enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
-</p>
+
+installation Guide, not fully tested, working on this and fixing all when done properly.
+enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
+
 
 
 <h1>PROJECT AA installation</h1>
 
 
-<h3>requirements:</h3>
+requirements:
 <ul>
    <li>
       Node.js 18 and npm
@@ -35,32 +34,32 @@
 
 <h2>2.</h2>
    <h3>create the database from the file:</h3>
-   <p>
+
       ```bash
       projectaa_database.sql
-   </p>
+
 
 <h2>3.</h2>
    <h3>install backend nodes</h3>
-    <p>
+
        ```bash
        cd backend
        npm install
-    </p>
+
     
 <h2>4.</h2>
 <h3>run backend with command</h3>
-<p>
+
    ```bash
   npm start
-</p>
-<p>
+
+
   if you want dev as automatic restart use
-</p>
-<p>
+
+
    ```bash
   npm run dev
-</p>
+
 
 
 <h2>6.</h2> 

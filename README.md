@@ -20,7 +20,6 @@
       <li>
          GIT
       </li>
-      
    </ul>
 </div>
 
@@ -31,11 +30,12 @@
          clone the project:
          git clone https://github.com/Beolpluusor/projectaa-v2
       </p>
-
-
-<h2>2.</h2>
-
-<h2>create the database from the file: projectaa_database.sql</h2>
+   
+   <h2>2.</h2>
+      <h2>create the database from the file:</h2>
+      <p>
+         projectaa_database.sql
+      </p>
 
 3.
    install backend nodes

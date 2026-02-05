@@ -14,7 +14,7 @@ export function authMiddleware(req, res, next) {
         req.user = decoded; // voit käyttää reiteissä
         next();
     } catch (err) {
-        return res.status(403).json({ error: "Virheellinen tai vanhenutun token "});
+        return res.status(403).json({ error: "Virheellinen tai vanhentunut token "});
     }
 }
 

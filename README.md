@@ -14,7 +14,7 @@ GIT
 #---dev installation
 
 ##1.
- # ---clone the project:
+ #---clone the project:
  ```bash
  git clone https://github.com/Beolpluusor/projectaa-v2
    

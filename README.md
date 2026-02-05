@@ -17,33 +17,37 @@ dev installation
 clone the project:
 ```bash
 git clone https://github.com/Beolpluusor/projectaa-v2
+```bash
  
 2.
 create the database from the file:
 ```bash
 projectaa_database.sql
+```bash
 
 3.
 install backend nodes
 ```bash
 cd backend
 npm install
-    
+```bash
+
 4.
 run backend with command
 ```bash
 npm start
+```bash
 if you want dev as automatic restart use
 ```bash
 npm run dev
-
+```bash
 5.
 install frontend
 ```bash
 cd projectaa-v2/frontend
 npm install
 npm run dev
-
+```bash
 ALL DONE
 
 

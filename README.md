@@ -58,7 +58,7 @@ npm run dev
 
 
 
-###Blockquotes installation isn't yet tested so there might be problems, im on to it when I have done few things.
+"installation isn't yet tested so there might be problems, im on to it when I have done few things."
 
 ### 1.
 #### setup node:

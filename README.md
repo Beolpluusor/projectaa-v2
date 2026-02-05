@@ -1,5 +1,5 @@
 # Installation setup/guide by: Beolpluusor  
-# ! READ THIS FIRST!  
+# ! READ THIS FIRST !  
 Installation Guide, not fully tested, working on this and fixing all when done properly.  
 enjoy the project as I did building this.  
 if you have anything to ask just email me: arttu.sonne@live.co.uk  

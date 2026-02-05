@@ -11,7 +11,7 @@ GIT
 
 ---dev installation
 1.
-#clone the project:
+clone the project:
 git clone https://github.com/Beolpluusor/projectaa-v2
 
 2.
@@ -19,7 +19,7 @@ create the database from the file: projectaa_database.sql
 
 3.
    install backend nodes
-    #cd backend
+    cd backend
     npm install
     
 4.

@@ -10,7 +10,15 @@ if you have anything to ask just email me: arttu.sonne@live.co.uk
 [APACHE/LAMP installation](#project_aa_server_installation)  
 
 # what is project-aa  
-its a website with full login/register system that uses database.  
+its a website with login/register system that uses database and  
+and stores password hashed.
+small games (only 2 right now) that are written in javascript.  
+pages are:
+- profile ( player stats and history )
+- mainpage ( news, greeting, etc... )
+- database ( users and games )
+- games ( list of games in database )
+- hallOfFame ( list of top 10 players of all users )
 
 # why I made this project  
 #### point of this project is to learn full-stack building

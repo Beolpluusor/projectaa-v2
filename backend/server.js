@@ -1,7 +1,14 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import mysql from "mysql2";
 import cors from "cors";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { authMiddleware } from "./authMiddleware.js";
+
+
 
 const app = express();
 app.use(cors());
@@ -11,10 +18,10 @@ app.use(express.json());
 // DATABASE CONNECTION to project - aa
 // =========================
 const db_projectaa = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "projectaa",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 // =========================
@@ -40,16 +47,24 @@ app.post("/login", (req, res) => {
       const isPasswordValid = await bcrypt.compare(password, user.PASSWORD);
 
       if (!isPasswordValid) {
-        return res.json({ status: "error", message: "invalid_credentials" });
-      }
-
-      return res.json({
-        status: "ok",
-        message: "login_success",
-        user: user.id,
-        username: user.username,
-        player_tag: user.PLAYER_TAG,
-      });
+            return res.json({ status: "error", message: "invalid_credentials" });
+          }
+      
+          // luo token
+          const token = jwt.sign(
+            { id: user.id, username: user.username },
+            process.env.JWT_SECRET,
+            { expiresIn: "2h" }
+          );
+      
+          return res.json({
+            status: "ok",
+            message: "login_success",
+            token, // <--- tärkeä
+            user: user.id,
+            username: user.username,
+            player_tag: user.PLAYER_TAG,
+          });
     }
   );
 });
@@ -95,7 +110,7 @@ app.post("/register", async (req, res) => {
 // =========================
 // CHANGE PLAYER TAG
 // =========================
-app.post("/update_player_tag", (req, res) => {
+app.post("/update_player_tag", authMiddleware, (req, res) => {
   
   const { user_id, new_player_tag } = req.body;
 
@@ -115,7 +130,7 @@ app.post("/update_player_tag", (req, res) => {
 // =========================
 // LIST ALL PLAYERS
 // =========================
-app.get("/players", (req, res) => {
+app.get("/players", authMiddleware, (req, res) => {
   db_projectaa.query("SELECT id, username, PLAYER_TAG FROM users", (err, results) => {
     if (err) {
       console.error("DB error:", err);
@@ -146,7 +161,7 @@ app.get("/players", (req, res) => {
 //      }
 //    ]
 //  }
-app.get("/profile/:userId", (req, res) => {
+app.get("/profile/:userId", authMiddleware, (req, res) => {
   const userId = req.params.userId;
 
   db_projectaa.query(
@@ -185,7 +200,7 @@ app.get("/profile/:userId", (req, res) => {
 // =========================
 // LIST ALL GAMES
 // =========================
-app.get("/games", (req, res) => {
+app.get("/games", authMiddleware, (req, res) => {
   db_projectaa.query("SELECT * FROM gamtitle", (err, results) => {
     if (err) {
       console.error("DB error:", err);
@@ -202,7 +217,7 @@ app.get("/games", (req, res) => {
 // =========================
 // gamescore save
 // =========================
-app.post("/save_reaction_score", (req, res) => {
+app.post("/save_reaction_score", authMiddleware, (req, res) => {
   const { PLAYER_TAG, GAMEID, PLAYERSCORE, GAMETIME, user_id } = req.body;
 
   // 1. Lisää peli game-tauluun

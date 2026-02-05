@@ -58,7 +58,7 @@ export default function RegisterNewUser() {
         <input
           type="password"
           placeholder="Password"
-          maxLength={4}
+          maxLength={25}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -77,7 +77,7 @@ export default function RegisterNewUser() {
         <Button onClick={() => navigate("/")}>Back to mainpage</Button>
 
         <Text size="sm" c="dimmed">
-          Remember to fill all the boxes, password is max 4 length.
+          Remember to fill all the boxes, no empty allowed.
         </Text>
       </Stack>
     </Layout>

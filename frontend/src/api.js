@@ -1,16 +1,28 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function apiPost(path, data) {
-    const res = await fetch(`${API_URL}${path}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    });
+  const token = localStorage.getItem("token");
 
-    return res.json();
+  const res = await fetch(`${API_URL}${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": token ? `Bearer ${token}` : ""
+    },
+    body: JSON.stringify(data)
+  });
+
+  return res.json();
 }
 
 export async function apiGet(path) {
-    const res = await fetch(`${API_URL}${path}`);
-    return res.json();
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(`${API_URL}${path}`, {
+    headers: {
+      "Authorization": token ? `Bearer ${token}` : ""
+    }
+  });
+
+  return res.json();
 }

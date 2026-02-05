@@ -1,4 +1,4 @@
-<h1>made by: <bold>Beolpluusor</bold></h1>
+made by: Beolpluusor
 
 installation Guide, not fully tested, working on this and fixing all when done properly.
 enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
@@ -6,11 +6,8 @@ enjoy this project as I did building. if you have anything to ask just email me:
 PROJECT AA installation
 
 requirements:
-
 Node.js 18 and npm
-
 MYSQL-server
-
 GIT
 
 
@@ -18,35 +15,36 @@ GIT
 
 1.
  # ---clone the project:
-```bash
-git clone https://github.com/Beolpluusor/projectaa-v2
+ ```bash
+ git clone https://github.com/Beolpluusor/projectaa-v2
    
 2.
-create the database from the file:
-```bash
-projectaa_database.sql
+#---create the database from the file:
+ ```bash
+ projectaa_database.sql
 
 3.
-install backend nodes
-```bash
-cd backend
-npm install
+#---install backend nodes
+ ```bash
+ cd backend
+ npm install
       
 4.
-run backend with command
-```bash
-npm start
-if you want dev as automatic restart use
-```bash
-npm run dev
+#---run backend with command
+ ```bash
+ npm start
+#---if you want dev as automatic restart use
+ ```bash
+ npm run dev
 
 5.
-install frontend
-```bash
-cd projectaa-v2/frontend
-npm install
-npm run dev
----------------------------------------
+#---install frontend
+ ```bash
+ cd projectaa-v2/frontend
+ npm install
+ npm run dev
+
+#---ALL DONE
 
 
 <h1>!*** --- lamp/apache installation --- ***!</h1>

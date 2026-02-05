@@ -35,7 +35,9 @@ npm install
 #### run backend with command
 ```bash
 npm start
-if you want dev as automatic restart use
+```
+#### if you want dev as automatic restart use
+```bash
 npm run dev
 ```
 

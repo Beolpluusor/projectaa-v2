@@ -11,12 +11,13 @@ enjoy this project as I did building. if you have anything to ask just email me:
 - GIT
 ---
 
-dev installation
+## dev installation
 
-1.
-clone the project:
+### 1.
+### clone the project:
+```bash
 git clone https://github.com/Beolpluusor/projectaa-v2
-
+```bash
 2.
 create the database from the file:
 projectaa_database.sql

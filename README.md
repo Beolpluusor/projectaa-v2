@@ -3,10 +3,7 @@
 installation Guide, not fully tested, working on this and fixing all when done properly.
 enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
 
-
-
 <h1>PROJECT AA installation</h1>
-
 
 requirements:
 <ul>
@@ -21,45 +18,31 @@ requirements:
    </li>
 </ul>
 
-
 <h1>---dev installation</h1>
 
 <h2>1.</h2>
    <h3>clone the project:</h3>
-   
       ```bash
       git clone https://github.com/Beolpluusor/projectaa-v2
    
-
 <h2>2.</h2>
    <h3>create the database from the file:</h3>
-
       ```bash
       projectaa_database.sql
 
-
 <h2>3.</h2>
    <h3>install backend nodes</h3>
-
       ```bash
       cd backend
       npm install
-
-    
+      
 <h2>4.</h2>
    <h3>run backend with command</h3>
-
       ```bash
      npm start
-
-
   <h3>if you want dev as automatic restart use</h3>
-
-
      ```bash
      npm run dev
-
-
 
 <h2>5.</h2> 
    <h3>install frontend</h3>
@@ -67,7 +50,7 @@ requirements:
       cd projectaa-v2/frontend
       npm install
       npm run dev
-
+<p>---------------------------------------</p>
 
 
 <h1>!*** --- lamp/apache installation --- ***!</h1>

@@ -26,7 +26,8 @@
 <h1>---dev installation</h1>
 <div>
    <h2>1.</h2>
-      <h3>clone the project:</h3>
+      ```md
+      clone the project:
       
          ```bash
          git clone https://github.com/Beolpluusor/projectaa-v2

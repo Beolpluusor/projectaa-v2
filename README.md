@@ -25,7 +25,8 @@ its a website with full login/register system that uses database.
 # who am I
 My name is Arttu and Im a student at Riveria  
 when I started learning coding in Riveria I've had this project in my mind many years ago.  
-since my first touch in coding, which was C++, I have allways wanted to get better at coding/full-stack-development. 
+since my first touch in coding, which was C++, I have allways wanted to get better at coding/full-stack-development.  
+
 But because of things and happenings that is becoming real for me right now.
 now I have finally done it!
 

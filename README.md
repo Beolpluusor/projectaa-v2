@@ -49,6 +49,8 @@ npm install
 npm run dev
 ```
 
-ALL DONE
+# ALL DONE
+
+# apache installation GUIDE 
 
 

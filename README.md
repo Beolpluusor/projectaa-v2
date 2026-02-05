@@ -14,8 +14,9 @@ point of this project is to learn to make react-based website that uses database
 and learn how to install a website/sql datbase on a lamp/apache server. 
 # who am I
 My name is Arttu and Im a student at Riveria  
-when I started learning coding in Riveria I have had this project in my mind years ago.  
-I have allways wanted to get better at coding/full-stack-development.  
+when I started learning coding in Riveria I've had this project in my mind many years ago.  
+since my first touch in coding, which was C++, I have allways wanted to get better at coding/full-stack-development. 
+But because of things and happenings that is becoming real for me right now.
 now I have finally done it!
 
 

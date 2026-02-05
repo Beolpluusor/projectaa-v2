@@ -24,19 +24,24 @@
    </ul>
 </div>
 
----dev installation
-1.
-clone the project:
-git clone https://github.com/Beolpluusor/projectaa-v2
+<h1>---dev installation</h1>
+<div>
+   <h3>1.</h3>
+      <p>
+         clone the project:
+         git clone https://github.com/Beolpluusor/projectaa-v2
+      </p>
 
-2.
-create the database from the file: projectaa_database.sql
+
+<h2>2.</h2>
+
+<h2>create the database from the file: projectaa_database.sql</h2>
 
 3.
    install backend nodes
     cd backend
     npm install
-    
+ 
 4.
  run backend with command
   npm start
@@ -47,7 +52,7 @@ create the database from the file: projectaa_database.sql
    cd projectaa-v2/frontend
    npm install
    npm run dev
-
+</div>
 
 !*** --- lamp/apache installation --- ***!
 installation isn't yet tested so there might be problems, im on to it when I have done few things.

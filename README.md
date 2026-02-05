@@ -1,8 +1,13 @@
-made by: Beolpluusor
-installation Guide, not fully tested, working on this and fixing all when done properly.
-enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
+<div>
+   <h1>made by: <bold>Beolpluusor</bold></h1>
+   <p>
+      installation Guide, not fully tested, working on this and fixing all when done properly.
+      enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
+   </p>
+</div>
 
-PROJECT AA installation
+<h1>PROJECT AA installation</h1>
+
 <div>
    <h3>requirements:</h3>
    <ul>

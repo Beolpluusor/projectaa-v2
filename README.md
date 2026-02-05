@@ -13,23 +13,23 @@ GIT
 
 #---dev installation
 
-1.
+##1.
  # ---clone the project:
  ```bash
  git clone https://github.com/Beolpluusor/projectaa-v2
    
-2.
+##2.
 #---create the database from the file:
  ```bash
  projectaa_database.sql
 
-3.
+##3.
 #---install backend nodes
  ```bash
  cd backend
  npm install
       
-4.
+##4.
 #---run backend with command
  ```bash
  npm start
@@ -37,7 +37,7 @@ GIT
  ```bash
  npm run dev
 
-5.
+##5.
 #---install frontend
  ```bash
  cd projectaa-v2/frontend
@@ -47,9 +47,9 @@ GIT
 #---ALL DONE
 
 
-<h1>!*** --- lamp/apache installation --- ***!</h1>
+!*** --- lamp/apache installation --- ***!
 installation isn't yet tested so there might be problems, im on to it when I have done few things.
-1.
+##1.
   setup node:
   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
   sudo apt install -y nodejs

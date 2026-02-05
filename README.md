@@ -59,21 +59,23 @@ npm run dev
 
 
 installation isn't yet tested so there might be problems, im on to it when I have done few things.
-1.
-setup node:
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
-2. 
+### 1.
+####setup node:
+```bash
+ curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+ sudo apt install -y nodejs
+```
+### 2. 
 clone the project:
 cd /var/www
 sudo git clone https://github.com/Beolpluusor/projectaa-v2
 sudo chown -R $USER:$USER projectaa-v2
-3.
+### 3.
 Create MYSQL
 mysql - u root -p
 CREATE DATABASE projectaa;
 import tables from the dump (projectaa_database.sql)
-4.
+### 4.
 create backend .env:
 cd /var/www/projectaa-v2/backend
 nano .env
@@ -85,19 +87,19 @@ DB_PASSWORD=
 DB_NAME=projectaa
 ,after those save and then close...
 
-5. 
+### 5. 
 install backend nodes:
 cd /var/www/projectaa-v2/backend
 npm install
 
-6. start backend as prodcution (PM2)
+### 6. start backend as prodcution (PM2)
  sudo npm install -g pm2
  pm2 start server.js --nameprojectaa-backend
  pm2 save
  pm2 startup
    backend is now running on port 5000
  
-7. configurate pache reverse-proxy (recommended)
+### 7. configurate pache reverse-proxy (recommended)
    apache -> node backend
    apache -> react build
  get mod_proxy:
@@ -130,7 +132,7 @@ npm install
    sudo Systemctl reload apache2
 
 
-8. build frontend to production
+### 8. build frontend to production
  cd /var/www/projectaa-v2/frontend
  npm install
  npm run build

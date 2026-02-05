@@ -117,10 +117,10 @@ npm run dev
  
 ### 7. 
 #### configurate apache reverse-proxy (recommended)
-```bash
-   apache -> node backend
-   apache -> react build
-```
+
+> apache -> node backend
+> apache -> react build
+
  #### get mod_proxy:
  ```bash
    sudo a2enmod proxy
@@ -134,7 +134,7 @@ npm run dev
  ```
 
    #### ***** in the file copy this ******:
-  
+  ```bash
    <VirtualHost *:80>
       ServerName yourdomain.com
 
@@ -149,6 +149,7 @@ npm run dev
       ProxyPass /api http://localhost:5000/
       ProxyPassReverse /api http://localhost:5000/
   </VirtualHost>
+```
 
  #### then take it on use:
  ```bash

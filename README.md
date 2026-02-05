@@ -27,34 +27,44 @@
 <div>
    <h2>1.</h2>
       <h3>clone the project:</h3>
-      <p style="background-color: black; color: white;">
+      <p>
+         ```bash
          git clone https://github.com/Beolpluusor/projectaa-v2
       </p>
    
    <h2>2.</h2>
       <h3>create the database from the file:</h3>
-      <p style="background-color: black; color: white;">
+      <p>
+         ```bash
          projectaa_database.sql
       </p>
 
    <h2>3.</h2>
       <h3>install backend nodes</h3>
-       <p style="background-color: black; color: white;">
+       <p>
+          ```bash
           cd backend
           npm install
        </p>
        
    <h2>4.</h2>
    <h3>run backend with command</h3>
-   <p style="background-color: black; color: white;">
+   <p>
+      ```bash
      npm start
+   </p>
+   <p>
      if you want dev as automatic restart use
+   </p>
+   <p>
+      ```bash
      npm run dev
    </p>
    
+   
    <h2>6.</h2> 
    <h3>install frontend</h3>
-   <p style="background-color: black; color: white;">
+   <p>
       cd projectaa-v2/frontend
       npm install
       npm run dev

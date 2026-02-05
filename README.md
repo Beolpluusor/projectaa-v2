@@ -52,14 +52,14 @@ npm run dev
 ```
 
 # ALL DONE
+#### enjoy the website, feel free to make new stuff in there!
+
+
 
 # lamp-installation
 # apache/Lamp server installation GUIDE 
 
-
-
 >installation isn't yet tested so there might be problems, im on to it when I have done few things.
-
 
 ### 1.
 #### setup node:
@@ -116,7 +116,7 @@ npm run dev
 #### backend is now running on port 5000
  
 ### 7. 
-#### configurate pache reverse-proxy (recommended)
+#### configurate apache reverse-proxy (recommended)
 ```bash
    apache -> node backend
    apache -> react build
@@ -178,8 +178,8 @@ npm run dev
 #### check that if token is saved in localStorage
 #### test proected routes (players, profile, games)
 
-#All Done!
-###you have now:
+# All Done!
+### you have now:
 - apache that serves as react-frontend
 - apache proxy that routes through /api -> node backend
 - node backend runs on pm2

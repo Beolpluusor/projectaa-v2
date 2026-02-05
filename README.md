@@ -58,18 +58,23 @@ npm run dev
 
 
 
-installation isn't yet tested so there might be problems, im on to it when I have done few things.
+###Blockquotes installation isn't yet tested so there might be problems, im on to it when I have done few things.
+
 ### 1.
 #### setup node:
 ```bash
  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
  sudo apt install -y nodejs
 ```
+
 ### 2. 
-clone the project:
-cd /var/www
-sudo git clone https://github.com/Beolpluusor/projectaa-v2
-sudo chown -R $USER:$USER projectaa-v2
+####clone the project:
+```bash
+ cd /var/www
+ sudo git clone https://github.com/Beolpluusor/projectaa-v2
+ sudo chown -R $USER:$USER projectaa-v2
+```
+
 ### 3.
 Create MYSQL
 mysql - u root -p

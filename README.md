@@ -1,5 +1,5 @@
 made by: Beolpluusor
-installatin Guide, not fully tested, working on this and fixing all when done properly.
+installation Guide, not fully tested, working on this and fixing all when done properly.
 enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
 
 PROJECT AA installation

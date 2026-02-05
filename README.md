@@ -15,26 +15,22 @@ enjoy this project as I did building. if you have anything to ask just email me:
 
 ## dev installation
 
-### 1.
-#### clone the project:
+### 1. clone the project:
 ```bash
 git clone https://github.com/Beolpluusor/projectaa-v2
 ```
-### 2.
-#### create the database from the file:
+### 2. create the database from the file:
 ```bash
 projectaa_database.sql
 ```
 
-### 3.
-#### install backend nodes
+### 3. install backend nodes
 ```bash
 cd backend
 npm install
 ```
 
-### 4.
-#### run backend with command
+### 4. run backend with command
 ```bash
 npm start
 ```
@@ -43,8 +39,7 @@ npm start
 npm run dev
 ```
 
-### 5.
-### #install frontend
+### 5. install frontend
 ```bash
 cd projectaa-v2/frontend
 npm install
@@ -61,31 +56,27 @@ npm run dev
 
 >installation isn't yet tested so there might be problems, im on to it when I have done few things.
 
-### 1.
-#### setup node:
+### 1. setup node:
 ```bash
  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
  sudo apt install -y nodejs
 ```
 
-### 2. 
-#### clone the project:
+### 2. clone the project:
 ```bash
  cd /var/www
  sudo git clone https://github.com/Beolpluusor/projectaa-v2
  sudo chown -R $USER:$USER projectaa-v2
 ```
 
-### 3.
-#### Create MYSQL
+### 3. Create MYSQL
 ```bash
  mysql - u root -p
 ```
 ##### CREATE DATABASE projectaa;
  ##### import tables from the dump (projectaa_database.sql)
  
-### 4.
-#### create backend .env:
+### 4. create backend .env:
 ```bash
  cd /var/www/projectaa-v2/backend
  nano .env
@@ -98,15 +89,13 @@ npm run dev
 ```
 #### save and then close...
 
-### 5. 
-#### install backend nodes:
+### 5. install backend nodes:
 ```bash
  cd /var/www/projectaa-v2/backend
  npm install
 ```
 
-### 6. 
-#### start backend as prodcution (PM2)
+### 6. start backend as prodcution (PM2)
 ```bash
  sudo npm install -g pm2
  pm2 start server.js --nameprojectaa-backend
@@ -115,8 +104,7 @@ npm run dev
 ```
 #### backend is now running on port 5000
  
-### 7. 
-#### configurate apache reverse-proxy (recommended)
+### 7. configurate apache reverse-proxy (recommended)
 
 > apache -> node backend
 > apache -> react build
@@ -157,8 +145,7 @@ npm run dev
    sudo Systemctl reload apache2
 ```
 
-### 8. 
-#### build frontend to production:
+### 8. build frontend to production:
 ```bash
  cd /var/www/projectaa-v2/frontend
  npm install

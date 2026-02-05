@@ -3,11 +3,14 @@ installation Guide, not fully tested, working on this and fixing all when done p
 enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
 
 PROJECT AA installation
-
-requirements:
-Node.js 18 and npm
-MYSQL-server
-GIT
+<div>
+   <ul>
+      requirements:
+      Node.js 18 and npm
+      MYSQL-server
+      GIT
+   </ul>
+</div>
 
 ---dev installation
 1.

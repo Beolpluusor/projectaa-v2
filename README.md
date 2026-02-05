@@ -1,9 +1,9 @@
-###made by: Beolpluusor
+made by: Beolpluusor
 
 installation Guide, not fully tested, working on this and fixing all when done properly.
 enjoy this project as I did building. if you have anything to ask just email me: arttu.sonne@live.co.uk 
 
-#PROJECT AA installation
+PROJECT AA installation
 
 requirements:
 Node.js 18 and npm
@@ -11,124 +11,124 @@ MYSQL-server
 GIT
 
 
-#---dev installation
+dev installation
 
-##1.
- #---clone the project:
- ```bash
- git clone https://github.com/Beolpluusor/projectaa-v2
-   
-##2.
-#---create the database from the file:
- ```bash
- projectaa_database.sql
+1.
+clone the project:
+```bash
+git clone https://github.com/Beolpluusor/projectaa-v2
+ 
+2.
+create the database from the file:
+```bash
+projectaa_database.sql
 
-##3.
-#---install backend nodes
- ```bash
- cd backend
- npm install
-      
-##4.
-#---run backend with command
- ```bash
- npm start
-#---if you want dev as automatic restart use
- ```bash
- npm run dev
+3.
+install backend nodes
+```bash
+cd backend
+npm install
+    
+4.
+run backend with command
+```bash
+npm start
+if you want dev as automatic restart use
+```bash
+npm run dev
 
-##5.
-#---install frontend
- ```bash
- cd projectaa-v2/frontend
- npm install
- npm run dev
+5.
+install frontend
+```bash
+cd projectaa-v2/frontend
+npm install
+npm run dev
 
-#---ALL DONE
+ALL DONE
 
 
 !*** --- lamp/apache installation --- ***!
 installation isn't yet tested so there might be problems, im on to it when I have done few things.
-##1.
-  setup node:
-  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-  sudo apt install -y nodejs
+1.
+setup node:
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
 2. 
-  clone the project:
-  cd /var/www
-  sudo git clone https://github.com/Beolpluusor/projectaa-v2
-  sudo chown -R $USER:$USER projectaa-v2
+clone the project:
+cd /var/www
+sudo git clone https://github.com/Beolpluusor/projectaa-v2
+sudo chown -R $USER:$USER projectaa-v2
 3.
-  Create MYSQL
-  mysql - u root -p
-  CREATE DATABASE projectaa;
-  import tables from the dump (projectaa_database.sql)
+Create MYSQL
+mysql - u root -p
+CREATE DATABASE projectaa;
+import tables from the dump (projectaa_database.sql)
 4.
-  create backend .env:
-  cd /var/www/projectaa-v2/backend
-  nano .env
-  and put there:
-  JWT_SECRET=supersecret123
-  DB_HOST=localhost
-  DB_USER=root
-  DB_PASSWORD=
-  DB_NAME=projectaa
-  ,after those save and then close...
-  
+create backend .env:
+cd /var/www/projectaa-v2/backend
+nano .env
+and put there:
+JWT_SECRET=supersecret123
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=projectaa
+,after those save and then close...
+
 5. 
-  install backend nodes:
-  cd /var/www/projectaa-v2/backend
-  npm install
+install backend nodes:
+cd /var/www/projectaa-v2/backend
+npm install
 
 6. start backend as prodcution (PM2)
-   sudo npm install -g pm2
-   pm2 start server.js --nameprojectaa-backend
-   pm2 save
-   pm2 startup
-     backend is now running on port 5000
-   
+ sudo npm install -g pm2
+ pm2 start server.js --nameprojectaa-backend
+ pm2 save
+ pm2 startup
+   backend is now running on port 5000
+ 
 7. configurate pache reverse-proxy (recommended)
-     apache -> node backend
-     apache -> react build
-   get mod_proxy:
-     sudo a2enmod proxy
-     sudo a2enmod proxy_http
-     sudo Systemctl restart apache2
-   
-   create virtual host:
-     sudo nano /etc/apache2/sites-available/projectaa.conf
-   
-      ***** inside put this ******:
-   
-     <VirtualHost *:80>
-        ServerName yourdomain.com
+   apache -> node backend
+   apache -> react build
+ get mod_proxy:
+   sudo a2enmod proxy
+   sudo a2enmod proxy_http
+   sudo Systemctl restart apache2
+ 
+ create virtual host:
+   sudo nano /etc/apache2/sites-available/projectaa.conf
+ 
+    ***** inside put this ******:
+ 
+   <VirtualHost *:80>
+      ServerName yourdomain.com
 
-        # Frontend build
-        DocumentRoot /var/www/projectaa-v2/frontend/dist
-        <Directory /var/www/projectaa-v2/frontend/dist>
-            AllowOverride All
-            Require all granted
-        </Directory>
-    
-        # Backend proxy
-        ProxyPass /api http://localhost:5000/
-        ProxyPassReverse /api http://localhost:5000/
-    </VirtualHost>
-
-    then take it on use:
-     sudo a2ensite projectaa.conf
-     sudo Systemctl reload apache2
-
+      # Frontend build
+      DocumentRoot /var/www/projectaa-v2/frontend/dist
+      <Directory /var/www/projectaa-v2/frontend/dist>
+          AllowOverride All
+          Require all granted
+      </Directory>
   
-8. build frontend to production
-   cd /var/www/projectaa-v2/frontend
-   npm install
-   npm run build
+      # Backend proxy
+      ProxyPass /api http://localhost:5000/
+      ProxyPassReverse /api http://localhost:5000/
+  </VirtualHost>
 
-   create frontend .env:
-     nano .env
-   and in there put this:
-     VITE_API_URL=/api
+  then take it on use:
+   sudo a2ensite projectaa.conf
+   sudo Systemctl reload apache2
+
+
+8. build frontend to production
+ cd /var/www/projectaa-v2/frontend
+ npm install
+ npm run build
+
+ create frontend .env:
+   nano .env
+ and in there put this:
+   VITE_API_URL=/api
 
 then test on browser: http://yourdomain.com
 log in

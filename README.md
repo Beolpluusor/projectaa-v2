@@ -96,7 +96,7 @@ npm run dev
  DB_PASSWORD=
  DB_NAME=projectaa
 ```
-#### after those save and then close...
+#### save and then close...
 
 ### 5. 
 #### install backend nodes:
